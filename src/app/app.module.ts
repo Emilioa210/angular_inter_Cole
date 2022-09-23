@@ -10,6 +10,7 @@ import { CarritoComponent } from './Componentes/carrito/carrito.component';
 import { CosAdminLoginComponent } from './Componentes/cos-admin-login/cos-admin-login.component';
 import { AdminCosComponent } from './Componentes/admin-cos/admin-cos.component';
 import { AdminCosListComponent } from './Componentes/admin-cos-list/admin-cos-list.component';
+import { IngresoDataComponent } from './Componentes/ingreso-data/ingreso-data.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AdminCosListComponent } from './Componentes/admin-cos-list/admin-cos-li
     CarritoComponent,
     CosAdminLoginComponent,
     AdminCosComponent,
-    AdminCosListComponent
+    AdminCosListComponent,
+    IngresoDataComponent
   ],
   imports: [
     BrowserModule,

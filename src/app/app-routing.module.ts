@@ -6,6 +6,7 @@ import { CarritoComponent } from './Componentes/carrito/carrito.component';
 import { CosAdminLoginComponent } from './Componentes/cos-admin-login/cos-admin-login.component';
 import { HomeComponent } from './Componentes/home/home.component';
 import { ProductosComponent } from './Componentes/productos/productos.component';
+import { IngresoDataComponent } from './Componentes/ingreso-data/ingreso-data.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path:'cos_admin_login',component:CosAdminLoginComponent},
   {path:'admin-cos',component:AdminCosComponent},
   {path:'admin-cos-list',component:AdminCosListComponent},
-  {path:"**", redirectTo:""}  
+  {path:'ingreso-data', component:IngresoDataComponent},
+  {path:"**", redirectTo:""}
 ];
 
 @NgModule({

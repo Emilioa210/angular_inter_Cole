@@ -12,4 +12,13 @@ export class ProductosComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  producto: any[] = [
+    {
+      "valor": "200$",
+      "v-descuento": "100$",
+      "titulo":"descripcion",
+      "texto":"LLorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia"
+    }
+  ]
+
 }
