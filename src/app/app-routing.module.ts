@@ -9,7 +9,7 @@ import { ProductosComponent } from './Componentes/productos/productos.component'
 import { IngresoDataComponent } from './Componentes/ingreso-data/ingreso-data.component';
 
 const routes: Routes = [
-  {path:"",component:HomeComponent},
+  {path:"home",component:HomeComponent},
   {path:'productos',component:ProductosComponent},
   {path:'carrito',component:CarritoComponent},
   {path:'cos_admin_login',component:CosAdminLoginComponent},

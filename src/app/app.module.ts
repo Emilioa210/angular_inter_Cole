@@ -12,6 +12,8 @@ import { AdminCosComponent } from './Componentes/admin-cos/admin-cos.component';
 import { AdminCosListComponent } from './Componentes/admin-cos-list/admin-cos-list.component';
 import { IngresoDataComponent } from './Componentes/ingreso-data/ingreso-data.component';
 
+import { RouterOutlet } from '@angular/router';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,8 +28,10 @@ import { IngresoDataComponent } from './Componentes/ingreso-data/ingreso-data.co
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterOutlet
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
