@@ -16,7 +16,7 @@ const routes: Routes = [
   {path:'admin-cos',component:AdminCosComponent},
   {path:'admin-cos-list',component:AdminCosListComponent},
   {path:'ingreso-data', component:IngresoDataComponent},
-  {path:"**", redirectTo:""}
+  {path:"**", redirectTo:"home"}
 ];
 
 @NgModule({
