@@ -1,4 +1,5 @@
- <!-- Navigation-->
+ <!--Navigation-->
+ 
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container px-4 px-lg-5">
         <img src="https://intercolegialue.com/wp-content/uploads/2021/09/cropped-Logo-UE-2021-a-color-sin-circulo-103x80.png" width="8%">
@@ -28,4 +29,90 @@
         </div>
     </div>
 </nav>
+<!--<div class="flex flex-wrap ">
+    <div class="w-full ">
+      <nav class="relative flex flex-wrap items-center justify-between px-2 py-3 bg-slate-100">
+        <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
+          <div class="w-full relative flex justify-between justify-items-center content-center lg:w-auto px-4 lg:static lg:block lg:justify-start">
+            <div class="flex flex-row items-center ">
+                <img src="https://intercolegialue.com/wp-content/uploads/2021/09/cropped-Logo-UE-2021-a-color-sin-circulo-103x80.png" class="w-8 h-8">
+              <h1 class="text-md font-bold font-Inter "> Unión Estudiantil </h1>
+            </div>
+            <button class=" text-gray-600 cursor-pointer text-xl leading-none px-3 py-1 rounded bg-transparent block lg:hidden outline-none focus:outline-none" type="button" (click)="toggleNavbar()">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
+              </svg>
+            </button>
+          </div>
+          <div [ngClass]="{'hidden': !menuShow, 'flex': menuShow}" class="lg:flex lg:flex-grow items-center">
+            <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+              <li class="nav-item">
+                <a class="px-3 py-2 flex items-center text-md font-light leading-snug text-black hover:opacity-75 cursor-pointer" routerLink="/inicio">
+                  Inicio
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="px-3 py-2 flex items-center text-md font-light leading-snug text-black hover:opacity-75 cursor-pointer" routerLink="/directiva">
+                  Directiva
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="px-3 py-2 flex items-center text-md font-light leading-snug text-black hover:opacity-75 cursor-pointer" routerLink="/departamentos">
+                  Departamentos
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="px-3 py-2 flex items-center text-md font-light leading-snug text-black hover:opacity-75 cursor-pointer" routerLink="/laboratorios">
+                  Laboratorios
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="px-3 py-2 flex items-center text-md font-light leading-snug text-black hover:opacity-75 cursor-pointer" routerLink="/proyectos">
+                  Proyectos
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="px-3 py-2 flex items-center text-md font-light leading-snug text-black hover:opacity-75 cursor-pointer" routerLink="/contactos">
+                  Contactos
+                </a>
+              </li>
+              <form class="d-flex">
+                <button class="btn btn-outline-dark" type="submit" routerLink="carrito">
+                    <i class="bi-cart-fill me-1"></i>
+                    Cart
+                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                </button>
+            </form>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div> -->
+
+  <!--<div class="m-4">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand">
+                <img src="/examples/images/logo.svg" height="28" alt="CoolBrand">
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav">
+                    <a href="#" class="nav-item nav-link active">Home</a>
+                    <a href="#" class="nav-item nav-link">Profile</a>
+                    <a href="#" class="nav-item nav-link">Messages</a>
+                    <a href="#" class="nav-item nav-link disabled" tabindex="-1">Reports</a>
+                </div>
+                <div class="navbar-nav ms-auto">
+                    <a href="#" class="nav-item nav-link">Login</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>-->
+
+
 <router-outlet></router-outlet>
