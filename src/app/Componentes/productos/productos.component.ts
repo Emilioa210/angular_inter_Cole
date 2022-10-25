@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductoService } from 'src/app/servicios/producto.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-productos',
@@ -7,18 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductosComponent implements OnInit {
 
-  constructor() { }
+  producto ={
+    CODIGO_PRODUCTO: '',
+    NOMBRE_PRODUCTO: '',
+    DESCRIPCION_PRODUCTO: '',
+    PRECIO_PRODUCTO: '',
+    IMG_PRODUCTO: ''
+  }
+  constructor(private productoDB:ProductoService,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    var id = this.route.snapshot.paramMap.get('id');
+    this.productoDB.get(id).subscribe(res=>{
+        this.producto = res;
+        console.log(this.producto)
+    });
   }
-
-  producto: any[] = [
-    {
-      "valor": "200$",
-      "v-descuento": "100$",
-      "titulo":"descripcion",
-      "texto":"LLorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia"
-    }
-  ]
-
 }

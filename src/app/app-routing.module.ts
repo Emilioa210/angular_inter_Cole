@@ -10,7 +10,7 @@ import { IngresoDataComponent } from './Componentes/ingreso-data/ingreso-data.co
 
 const routes: Routes = [
   {path:"home",component:HomeComponent},
-  {path:'productos',component:ProductosComponent},
+  {path:'productos/:id',component:ProductosComponent},
   {path:'carrito',component:CarritoComponent},
   {path:'cos_admin_login',component:CosAdminLoginComponent},
   {path:'admin-cos',component:AdminCosComponent},

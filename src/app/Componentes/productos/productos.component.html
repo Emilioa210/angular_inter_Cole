@@ -1,13 +1,14 @@
 <main class="mt-5 pt-4">
-    <div class="container dark-grey-text mt-5">
+
+    <div class="container dark-grey-text mt-5" >
 
       <!--Grid row-->
-      <div class="row wow fadeIn">
-
+      <div class="row wow fadeIn" >
+        
         <!--Grid column-->
         <div class="col-md-6 mb-4" >
-
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqqMHuMQ-JaMooMQlD-ujVWAW50jNF3tc3WYckaJov&s" class="img-fluid" alt="" width="80%" height="40%" style="border-radius: 10% 10% 10% 10% ; margin-left: 13% ; " >
+          <h4 class="my-4 h4" style="margin-left: 13% ; ">{{producto.NOMBRE_PRODUCTO}}</h4>
+          <img [src]="producto.IMG_PRODUCTO" class="img-fluid" alt="" width="80%" height="40%" style="border-radius: 10% 10% 10% 10% ; margin-left: 13% ; " >
 
         </div>
         <!--Grid column-->
@@ -32,16 +33,14 @@
 
             <p class="lead">
               <span class="mr-1">
-                <del>$200</del>
+                <del>$2</del>
               </span>
-              <span>$100</span>
+              <span>${{producto.PRECIO_PRODUCTO}}</span>
             </p>
 
             <p class="lead font-weight-bold">Description</p>
 
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia ipsa
-              sint voluptatibus!
-              Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente.</p>
+            <p>{{producto.DESCRIPCION_PRODUCTO}}</p>
 
             <form class="d-flex justify-content-left">
               <!-- Default input -->
