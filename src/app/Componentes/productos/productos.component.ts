@@ -8,8 +8,11 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./productos.component.css']
 })
 export class ProductosComponent implements OnInit {
-
-  producto ={
+  cantidad =0;
+  cantidades: any[] = [];
+  productos: any[] = [];
+  producto =
+  {
     CODIGO_PRODUCTO: '',
     NOMBRE_PRODUCTO: '',
     DESCRIPCION_PRODUCTO: '',
@@ -26,5 +29,25 @@ export class ProductosComponent implements OnInit {
         this.producto = res;
         console.log(this.producto)
     });
+  }
+
+  saveProducto(){
+    let recoveredData = localStorage.getItem('productos')
+    let recoveredCantidad = localStorage.getItem('cantidades')
+    if(recoveredData == null && recoveredCantidad== null){
+      this.productos.push(this.producto);
+      this.cantidades.push(this.cantidad);
+      localStorage.setItem('productos',JSON.stringify(this.productos))
+      localStorage.setItem('cantidades',JSON.stringify(this.cantidades))
+    }else{
+      this.productos = JSON.parse(recoveredData!);
+      this.cantidades = JSON.parse(recoveredCantidad!);
+      this.productos.push(this.producto);
+      this.cantidades.push(this.cantidad);
+      localStorage.setItem('productos',JSON.stringify(this.productos));
+      localStorage.setItem('cantidades',JSON.stringify(this.cantidades));
+    }
+    //localStorage.setItem('producto', JSON.stringify(this.producto));
+    //localStorage.setItem('cantidad', this.cantidad.toString());
   }
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './Componentes/header/header.component';
@@ -13,6 +13,7 @@ import { AdminCosListComponent } from './Componentes/admin-cos-list/admin-cos-li
 import { IngresoDataComponent } from './Componentes/ingreso-data/ingreso-data.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterOutlet } from '@angular/router';
+import { ProductosComponent } from './Componentes/productos/productos.component';
 
 @NgModule({
   declarations: [
@@ -24,14 +25,16 @@ import { RouterOutlet } from '@angular/router';
     CosAdminLoginComponent,
     AdminCosComponent,
     AdminCosListComponent,
-    IngresoDataComponent
+    IngresoDataComponent,
+    ProductosComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterOutlet,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
 
   providers: [],
