@@ -7,6 +7,7 @@ import { CosAdminLoginComponent } from './Componentes/cos-admin-login/cos-admin-
 import { HomeComponent } from './Componentes/home/home.component';
 import { ProductosComponent } from './Componentes/productos/productos.component';
 import { IngresoDataComponent } from './Componentes/ingreso-data/ingreso-data.component';
+import {DetallePedidoComponent} from './Componentes/detalle-pedido/detalle-pedido.component';
 
 const routes: Routes = [
   {path:"home",component:HomeComponent},
@@ -16,6 +17,8 @@ const routes: Routes = [
   {path:'admin-cos',component:AdminCosComponent},
   {path:'admin-cos-list',component:AdminCosListComponent},
   {path:'ingreso-data', component:IngresoDataComponent},
+  {path:'detalle-pedido', component:DetallePedidoComponent},
+  
   {path:"**", redirectTo:"home"}
 ];
 

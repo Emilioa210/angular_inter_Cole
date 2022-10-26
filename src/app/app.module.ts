@@ -13,6 +13,7 @@ import { AdminCosListComponent } from './Componentes/admin-cos-list/admin-cos-li
 import { IngresoDataComponent } from './Componentes/ingreso-data/ingreso-data.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterOutlet } from '@angular/router';
+import { DetallePedidoComponent } from './Componentes/detalle-pedido/detalle-pedido.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RouterOutlet } from '@angular/router';
     CosAdminLoginComponent,
     AdminCosComponent,
     AdminCosListComponent,
-    IngresoDataComponent
+    IngresoDataComponent,
+    DetallePedidoComponent
   ],
   imports: [
     BrowserModule,
