@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  productos: any[] = [];
+  items = 0;
   constructor() { }
 
   ngOnInit(): void {
+    this.productos = JSON.parse(localStorage.getItem('productos')!);
+    this.items = this.productos.length;
   }
 
   menuShow = false;

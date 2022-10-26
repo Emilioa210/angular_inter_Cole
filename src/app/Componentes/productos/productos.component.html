@@ -44,8 +44,8 @@
 
             <form class="d-flex justify-content-left">
               <!-- Default input -->
-              <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
-              <button class="btn btn-primary btn-md my-0 p" type="submit" onclick="carrito" routerLink="/carrito" routerLinkActive="router-link-active" >Add to cart
+              <input name="prueba"  type="number" value="1" aria-label="Search" class="form-control" style="width: 100px" [(ngModel)]="cantidad"/>
+              <button (click)="saveProducto()" class="btn btn-primary btn-md my-0 p" type="submit" onclick="carrito" routerLink="/carrito" routerLinkActive="router-link-active" >Add to cart
                 <i class="fas fa-shopping-cart ml-1"></i>
               </button>
 
