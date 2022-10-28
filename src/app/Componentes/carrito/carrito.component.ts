@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class CarritoComponent implements OnInit {
  cantidad = 0;
  items = 0;
+ totales = 0;
  cantidades: any[] = [];
  productos: any[] = []; 
  producto ={
@@ -20,21 +21,33 @@ export class CarritoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    
+      var i = 0;
+      var total = 0;
       this.productos = JSON.parse(localStorage.getItem('productos')!);
       this.items = this.productos.length;
-      console.log('Productos: '+this.productos[0].NOMBRE_PRODUCTO)
       this.cantidades = JSON.parse(localStorage.getItem('cantidades')!);
-    console.log('Cantidades: '+this.cantidades[0]);
+
+
+      this.productos.forEach(producto =>{
+          total += producto.PRECIO_PRODUCTO * this.cantidades[i];
+          i++;
+      });
+      localStorage.setItem('total',JSON.stringify(total));
+      this.totales = JSON.parse(localStorage.getItem('total')!);
   }
 
   deleteProducto(i:number){
     this.productos = JSON.parse(localStorage.getItem('productos')!);
     this.cantidades = JSON.parse(localStorage.getItem('cantidades')!);
-    let auxProd = this.productos.slice(i,i+1);
-    let auxCant = this.cantidades.slice(i,i+1);
+    var auxProd = this.productos.filter((item) => item.CODIGO_PRODUCTO !== this.productos[i].CODIGO_PRODUCTO);
+    //var auxCant = this.cantidades.filter((item) => item !== this.cantidades[i]);
+    //let auxProd = this.productos.splice(i,i+1);
+    this.cantidades.splice(i,1);
+    //console.log("Producto eliminado: "+auxProd);
+    //console.log("Cantidad eliminada: "+auxCant);
     localStorage.setItem('productos',JSON.stringify(auxProd));
-    localStorage.setItem('cantidades',JSON.stringify(auxCant));
+    localStorage.setItem('cantidades',JSON.stringify(this.cantidades));  
+    window.location.reload();
   }
 
 }
