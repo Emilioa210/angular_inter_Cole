@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.component.html',
@@ -18,7 +18,7 @@ export class CarritoComponent implements OnInit {
   PRECIO_PRODUCTO: '',
   IMG_PRODUCTO: ''
 }
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
       var i = 0;
@@ -48,6 +48,10 @@ export class CarritoComponent implements OnInit {
     localStorage.setItem('productos',JSON.stringify(auxProd));
     localStorage.setItem('cantidades',JSON.stringify(this.cantidades));  
     window.location.reload();
+  }
+
+  ingresoData(){
+    this.router.navigate(['ingreso-data']);
   }
 
 }
