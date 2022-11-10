@@ -17,20 +17,20 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label>Nombre *</label>
-                                        <input type="text" class="form-control" required>
+                                        <input type="text" class="form-control" required [(ngModel)]="emisor.nombre" name="nombre">
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-6">
                                         <label>Apellido *</label>
-                                        <input type="text" class="form-control" required>
+                                        <input type="text" class="form-control" required [(ngModel)]="emisor.apellido" name="apellido">
                                     </div><!-- End .col-sm-6 -->
                                 </div><!-- End .row -->
 
                                 <label>Correo</label>
-                                <input type="email" class="form-control" required>
+                                <input type="email" class="form-control" required [(ngModel)]="emisor.correo" name="correo">
 
                                 <label>Teléfono *</label>
-                                <input type="tel" class="form-control" required>
+                                <input type="tel" class="form-control" required [(ngModel)]="emisor.telefono" name="telefono">
 
                                 <label>Colegio</label>
                                 <select [(ngModel)]="colegioSeleccionado" (change)="selectColegio($event)" class="form-control" name="colegios">
@@ -41,7 +41,7 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label>Curso *</label>
-                                        <select (change)="selectCurso($event)" class="form-control">
+                                        <select [(ngModel)]="curso" (change)="selectCurso($event)" class="form-control" name="cursos">
                                             <option selected>Seleccionar Curso</option>
                                             <option *ngFor = "let curso of cursos; let i=index;" [value]="curso.CODIGO_CURSO">{{curso.NOMBRE_CURSO}}</option>
                                         </select>
@@ -49,7 +49,7 @@
 
                                     <div class="col-sm-6">
                                         <label>Paralelo *</label>
-                                        <select class="form-control">
+                                        <select [(ngModel)]="paralelo" (change)="selectParalelo($event)" class="form-control" name="paralelo">
                                             <option selected>Seleccionar Paralelo</option>
                                             <option *ngFor = "let paralelo of paralelos; let i=index;" [value]="paralelo.CODIGO_PARALELO">{{paralelo.NOMBRE_PARALELO}}</option>
                                         </select>
@@ -59,24 +59,18 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label>Apodo (opcional)*</label>
-                                        <input type="text" class="form-control" required>
+                                        <input [(ngModel)]="emisor.apodo" type="text" class="form-control" required name="apodo">
                                     </div><!-- End .col-sm-6 -->
 
                                 </div><!-- End .row -->
 
-
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="checkout-create-acc">
-                                    <label class="custom-control-label" for="checkout-create-acc"> Enviar regalo con nombre</label>
-                                </div><!-- End .custom-checkbox -->
-
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="checkout-diff-address">
+                                    <input [(ngModel)]="emisor.regalo_apodo" type="checkbox" class="custom-control-input" id="checkout-diff-address" ng-true-value="false" ng-false-value="true" name="apodo?">
                                     <label class="custom-control-label" for="checkout-diff-address"> Enviar regalo con apodo</label>
                                 </div><!-- End .custom-checkbox -->
 
                                 <label>Mensaje</label>
-                                <textarea class="form-control" cols="30" rows="4" placeholder="Deja un lindo mensaje para esa persona especial :D"></textarea>
+                                <textarea [(ngModel)]="emisor.mensaje" class="form-control" cols="30" rows="4" placeholder="Deja un lindo mensaje para esa persona especial :D" name="mensaje"></textarea>
                         </div><!-- End .col-lg-9 -->
                         <aside class="col-lg-3">
                             <div class="summary">
@@ -119,7 +113,7 @@
                                     <div class="card">
                                         <div class="card-header" id="heading-1">
                                             <h2 class="card-title">
-                                                <a role="button" data-toggle="collapse" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+                                                <a (click)="saveEmisor()" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="collapse-1">
                                                     Siguiente :D
                                                 </a>
                                                
