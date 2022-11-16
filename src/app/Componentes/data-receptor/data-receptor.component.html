@@ -5,6 +5,42 @@
         </div><!-- End .container -->
     </div><!-- End .page-header -->
 
+    <ng-template #myModalInfo let-modal>
+
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">TRANSACCIÓN REALIZADA</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.close()"> 
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+            REVISA EL COMPROBANTE DE COMPRA EN TU CORREO ELECTRÓNICO
+          </div>
+        </div>
+      
+    </ng-template>
+
+    <ng-template #myModalConf let-modal>
+
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Éxito</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.close('Cerrado desde la ventana')"> 
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+            ¿Quieres confirmar la transacción? 
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modal.close('No')">No</button>
+            <button type="button" class="btn btn-primary" (click)="modal.close('Si')">Si</button>
+          </div>
+        </div>
+      
+      </ng-template>
+
 
     <div class="page-content">
         <div class="checkout">
@@ -13,27 +49,22 @@
                 <form action="#">
                     <div class="row">
                         <div class="col-lg-9">
-                            <h2 class="checkout-title">DATOS DEL EMISOR</h2><!-- End .checkout-title -->
+                            <h2 class="checkout-title">DATOS DEL RECEPTOR</h2><!-- End .checkout-title -->
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label>Nombre *</label>
-                                        <input type="text" class="form-control" required [(ngModel)]="emisor.nombre" name="nombre">
+                                        <input type="text" class="form-control" required [(ngModel)]="receptor.nombre" name="nombre">
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-6">
                                         <label>Apellido *</label>
-                                        <input type="text" class="form-control" required [(ngModel)]="emisor.apellido" name="apellido">
+                                        <input type="text" class="form-control" required [(ngModel)]="receptor.apellido" name="apellido">
                                     </div><!-- End .col-sm-6 -->
                                 </div><!-- End .row -->
 
-                                <label>Correo</label>
-                                <input type="email" class="form-control" required [(ngModel)]="emisor.correo" name="correo">
-
-                                <label>Teléfono *</label>
-                                <input type="tel" class="form-control" required [(ngModel)]="emisor.telefono" name="telefono">
 
                                 <label>Colegio</label>
-                                <select [(ngModel)]="emisor.colegio" (change)="selectColegio($event)" class="form-control" name="colegios">
+                                <select [(ngModel)]="receptor.colegio" (change)="selectColegio($event)" class="form-control" name="colegios">
                                     <option selected>Seleccionar Colegio</option>
                                     <option *ngFor = "let colegio of colegios; let i=index;" [value]="colegio.CODIGO_COLEGIO">{{colegio.NOMBRE_COLEGIO}}</option>
                                 </select>
@@ -55,22 +86,6 @@
                                         </select>
                                     </div><!-- End .col-sm-6 -->
                                 </div><!-- End .row -->
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>Apodo (opcional)*</label>
-                                        <input [(ngModel)]="emisor.apodo" type="text" class="form-control" required name="apodo">
-                                    </div><!-- End .col-sm-6 -->
-
-                                </div><!-- End .row -->
-
-                                <div class="custom-control custom-checkbox">
-                                    <input [(ngModel)]="emisor.regalo_apodo" type="checkbox" class="custom-control-input" id="checkout-diff-address" ng-true-value="false" ng-false-value="true" name="apodo?">
-                                    <label class="custom-control-label" for="checkout-diff-address"> Enviar regalo con apodo</label>
-                                </div><!-- End .custom-checkbox -->
-
-                                <label>Mensaje</label>
-                                <textarea [(ngModel)]="emisor.mensaje" class="form-control" cols="30" rows="4" placeholder="Deja un lindo mensaje para esa persona especial :D" name="mensaje"></textarea>
                         </div><!-- End .col-lg-9 -->
                         <aside class="col-lg-3">
                             <div class="summary">
@@ -113,15 +128,15 @@
                                     <div class="card">
                                         <div class="card-header" id="heading-1">
                                             <h2 class="card-title">
-                                                <a (click)="saveEmisor()" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="collapse-1">
-                                                    Siguiente :D
+                                                <a (click)="saveReceptor()" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="collapse-1">
+                                                    PAGAR :D
                                                 </a>
                                                
                                             </h2>
                                         </div><!-- End .card-header -->
                                         <div id="collapse-1" class="collapse show" aria-labelledby="heading-1" data-parent="#accordion-payment">
                                             <div class="card-body">
-                                               No olvides de llenar correctamente tus datos 
+                                               No olvides de llenar correctamente los datos 
                                             </div><!-- End .card-body -->
                                         </div><!-- End .collapse -->
                                     </div><!-- End .card -->
@@ -143,3 +158,4 @@
         </div><!-- End .checkout -->
     </div><!-- End .page-content -->
 </main><!-- End .main -->
+

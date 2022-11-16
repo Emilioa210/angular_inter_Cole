@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ColegioService } from 'src/app/servicios/colegio.service';
 import { CursoParaleloService } from 'src/app/servicios/curso-paralelo.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-ingreso-data',
   templateUrl: './ingreso-data.component.html',
@@ -11,7 +13,6 @@ export class IngresoDataComponent implements OnInit {
   cursos: Array<any> = [];
   cursoParalelo: Array<any> = [];
   paralelos: Array<any> = [];
-  colegioSeleccionado:any = '';
   curso:any = '';
   paralelo:any = '';
   emisor = {
@@ -19,13 +20,15 @@ export class IngresoDataComponent implements OnInit {
       apellido: '',
       correo: '',
       telefono: '',
-      id_colegio_curso_paralelo: null,
+      colegio: '',
+      id_curso_paralelo: null,
       apodo: '',
       regalo_apodo: false,
       mensaje: ''
   }
   constructor(private colegioDB: ColegioService,
-              private cursoParaleloDB: CursoParaleloService) { }
+              private cursoParaleloDB: CursoParaleloService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.colegioDB.getAll().subscribe(res=>{
@@ -53,22 +56,23 @@ export class IngresoDataComponent implements OnInit {
 
   selectCurso(event:any){
     var e = event.target.value;
-    this.colegioDB.findParalelosPorCursos(this.colegioSeleccionado,e).subscribe(res =>{
+    this.colegioDB.findParalelosPorCursos(this.emisor.colegio,e).subscribe(res =>{
       this.paralelos = res as any[];
       console.log(this.paralelos);
     });
   }
 
   selectParalelo(event:any){
-    this.cursoParaleloDB.findByCursoParalelo(this.curso, this.paralelo, this.colegioSeleccionado).subscribe(res=>{
-        this.emisor.id_colegio_curso_paralelo = res.ID_COLEGIO_CURSO_PARALELO;
-        console.log(this.emisor);
+    this.cursoParaleloDB.findCursoParalelo(this.curso, this.paralelo).subscribe(res=>{
+        this.emisor.id_curso_paralelo = res.ID_CURSO_PARALELO;
     });
 
   }
 
   saveEmisor(){
     console.log(this.emisor);
+    localStorage.setItem('emisor',JSON.stringify(this.emisor))
+    this.router.navigate(['data-receptor']);
   }
 
 }

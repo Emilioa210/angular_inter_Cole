@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const baseUrl = 'http://localhost:5000/api/curso_paralelo';
+const baseUrl = 'http://localhost:5000/api/productos_cantidad';
+
 @Injectable({
   providedIn: 'root'
 })
-export class CursoParaleloService {
+export class ProductoCantidadService {
 
   constructor(private http: HttpClient) { }
 
@@ -34,11 +35,7 @@ export class CursoParaleloService {
     return this.http.delete(baseUrl);
   }
 
-  findByCursoParalelo(curso: any, paralelo:any, colegio:any): Observable<any>{
-    return this.http.get(`${baseUrl}/xd/findCursoParalelo?curso=${curso}&paralelo=${paralelo}&colegio=${colegio}`);
-  }
-
-  findCursoParalelo(curso: any, paralelo:any): Observable<any>{
-    return this.http.get(`${baseUrl}/xd/findParaleloCurso?curso=${curso}&paralelo=${paralelo}`);
+  findProductoCantidad(producto: any, cantidad:any): Observable<any>{
+    return this.http.get(`${baseUrl}/xd/findProductoCantidad/?producto=${producto}&cantidad=${cantidad}`);
   }
 }

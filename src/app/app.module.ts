@@ -14,6 +14,8 @@ import { IngresoDataComponent } from './Componentes/ingreso-data/ingreso-data.co
 import { HttpClientModule } from '@angular/common/http';
 import { RouterOutlet } from '@angular/router';
 import { ProductosComponent } from './Componentes/productos/productos.component';
+import { DataReceptorComponent } from './Componentes/data-receptor/data-receptor.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { ProductosComponent } from './Componentes/productos/productos.component'
     AdminCosComponent,
     AdminCosListComponent,
     IngresoDataComponent,
-    ProductosComponent
+    ProductosComponent,
+    DataReceptorComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,9 @@ import { ProductosComponent } from './Componentes/productos/productos.component'
     RouterOutlet,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
+
   ],
 
   providers: [],

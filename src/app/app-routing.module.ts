@@ -8,17 +8,19 @@ import { HomeComponent } from './Componentes/home/home.component';
 import { ProductosComponent } from './Componentes/productos/productos.component';
 import { IngresoDataComponent } from './Componentes/ingreso-data/ingreso-data.component';
 import {DetallePedidoComponent} from './Componentes/detalle-pedido/detalle-pedido.component';
+import { DataReceptorComponent } from './Componentes/data-receptor/data-receptor.component';
 
 const routes: Routes = [
   {path:"home",component:HomeComponent},
   {path:'productos/:id',component:ProductosComponent},
   {path:'carrito',component:CarritoComponent},
   {path:'cos_admin_login',component:CosAdminLoginComponent},
-  {path:'admin-cos',component:AdminCosComponent},
+  {path:'admin-cos/:id',component:AdminCosComponent},
   {path:'admin-cos-list',component:AdminCosListComponent},
   {path:'ingreso-data', component:IngresoDataComponent},
   {path:'detalle-pedido', component:DetallePedidoComponent},
-  
+  {path:'data-receptor', component:DataReceptorComponent},
+
   {path:"**", redirectTo:"home"}
 ];
 
