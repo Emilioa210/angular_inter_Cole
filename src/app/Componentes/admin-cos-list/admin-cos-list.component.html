@@ -1,3 +1,59 @@
+<ng-template #myModalPed let-modal>
+
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">DETALLE DE PEDIDO</h2>
+    </div>
+    <div class="modal-body" *ngFor = "let producto of productos; let i=index">
+      <p><b>Producto:</b> {{producto.producto}}</p>
+      <p><b>Cantidad:</b> {{producto.cantidad}}</p>
+      <p><b>Precio:</b> ${{producto.precio}}</p>
+      <p><b>Total:</b> ${{producto.total}}</p>
+      
+    </div>
+    <span class="badge badge-success rounded-pill d-inline" style="color: red;"><strong>TOTAL: ${{totales[indice]}}</strong></span>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="modal.close('ACEPTAR')">ACEPTAR</button>
+    </div>
+  </div>
+
+</ng-template>
+
+<ng-template #myModalInfo let-modal>
+
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">PAGADO</h5>
+    </div>
+    <div class="modal-body">
+      ¡SU PEDIDO SE HA CANCELADO CORRECTAMENTE!
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="modal.close('ACEPTAR')">ACEPTAR</button>
+    </div>
+  </div>
+
+</ng-template>
+
+<ng-template #myModalConf let-modal>
+
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">CONFIRMAR</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.close('Cerrado desde la ventana')"> 
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+      ¿ESTÁS SEGURO QUE DESEAS PAGAR EL PEDIDO?
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="modal.close('Si')">Si</button>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modal.close('No')">No</button>
+    </div>
+  </div>
+
+</ng-template>
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -59,13 +115,14 @@
       <tr>
         <th>Estudiante</th>
         <th>Productos</th>
+        <th>Total</th>
         <th>Status</th>
         <th>Número de pedido</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr *ngFor = "let pedido of pedidos; let i=index">
         
         <td>
           <div class="d-flex align-items-center">
@@ -76,91 +133,39 @@
                 class="rounded-circle"
                 />
             <div class="ms-3">
-              <p class="fw-bold mb-1">Emilio Anaci</p>
-              <p class="text-muted mb-0">Curso: Tercero Bachillerato</p>
-              <p class="text-muted mb-0">Paralelo: A</p>
+              <p class="fw-bold mb-1">{{pedido.nombre_emisor}} {{pedido.apellido_emisor}}</p>
+              <p class="text-muted mb-0">Curso: {{pedido.curso}}</p>
+              <p class="text-muted mb-0">Paralelo: {{pedido.paralelo}}</p>
+              <p class="text-muted mb-0">Correo: {{pedido.correo_emisor}}</p>
             </div>
           </div>
         </td>
-        <td>
-          <p class="fw-normal mb-1">1</p>
-          <p class="text-muted mb-0">Gomita de Navidad</p>
+        <td >
+          <button (click)="mostrarPedido(i)" type="button" class="btn btn-link btn-sm btn-rounded">
+            <span class="badge badge-success rounded-pill d-inline" style="color:black;"><strong>VER PEDIDO</strong></span>
+          </button>
         </td>
-        <td>
+        <td><p class="fw-normal mb-1">${{totales[i]}}</p></td>
+        <td *ngIf="pedido.estado == false">
           <span class="badge badge-success rounded-pill d-inline" style="color: red;"><strong>No Pagado</strong></span>
         </td>
-        <td>2345</td>
-        <td>
-          <button type="button" class="btn btn-link btn-sm btn-rounded">
+        <td *ngIf="pedido.estado == true">
+          <span class="badge badge-success rounded-pill d-inline" style="color: rgb(27, 203, 8);"><strong>Pagado</strong></span>
+        </td>
+        <td><p class="fw-normal mb-1">{{pedido.codigo_pedido}}</p></td>
+        
+        <td *ngIf="pedido.estado == false">
+          <button (click)="confirmarPedido(i)" type="button" class="btn btn-link btn-sm btn-rounded">
+            <span class="badge badge-success rounded-pill d-inline" style="color:black;"><strong>CONFIRMAR</strong></span>
+          </button>
+        </td>
+
+        <td *ngIf="pedido.estado == true">
+          <button type="button" class="btn btn-link btn-sm btn-rounded" disabled>
             <span class="badge badge-success rounded-pill d-inline" style="color:black;"><strong>CONFIRMAR</strong></span>
           </button>
         </td>
       </tr>
-      <tr>
-        <td>
-          <div class="d-flex align-items-center">
-            <img
-                src="https://mdbootstrap.com/img/new/avatars/6.jpg"
-                class="rounded-circle"
-                alt=""
-                style="width: 45px; height: 45px"
-                />
-            <div class="ms-3">
-              <p class="fw-bold mb-1">Alex Ray</p>
-              <p class="text-muted mb-0">alex.ray@gmail.com</p>
-            </div>
-          </div>
-        </td>
-        <td>
-          <p class="fw-normal mb-1">Consultant</p>
-          <p class="text-muted mb-0">Finance</p>
-        </td>
-        <td>
-            <span class="badge badge-success rounded-pill d-inline" style="color: red;"><strong>No Pagado</strong></span>
-        </td>
-        <td>Junior</td>
-        <td>
-          <button
-                  type="button"
-                  class="btn btn-link btn-rounded btn-sm fw-bold"
-                  data-mdb-ripple-color="dark"
-                  >
-            Edit
-          </button>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="d-flex align-items-center">
-            <img
-                src="https://mdbootstrap.com/img/new/avatars/7.jpg"
-                class="rounded-circle"
-                alt=""
-                style="width: 45px; height: 45px"
-                />
-            <div class="ms-3">
-              <p class="fw-bold mb-1">Kate Hunington</p>
-              <p class="text-muted mb-0">kate.hunington@gmail.com</p>
-            </div>
-          </div>
-        </td>
-        <td>
-          <p class="fw-normal mb-1">Designer</p>
-          <p class="text-muted mb-0">UI/UX</p>
-        </td>
-        <td>
-            <span class="badge badge-success rounded-pill d-inline" style="color: red;"><strong>No Pagado</strong></span>
-        </td>
-        <td>Senior</td>
-        <td>
-          <button
-                  type="button"
-                  class="btn btn-link btn-rounded btn-sm fw-bold"
-                  data-mdb-ripple-color="dark"
-                  >
-            Edit
-          </button>
-        </td>
-      </tr>
+
     </tbody>
   </table>

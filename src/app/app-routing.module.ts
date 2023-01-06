@@ -16,7 +16,7 @@ const routes: Routes = [
   {path:'carrito',component:CarritoComponent},
   {path:'cos_admin_login',component:CosAdminLoginComponent},
   {path:'admin-cos/:id',component:AdminCosComponent},
-  {path:'admin-cos-list',component:AdminCosListComponent},
+  {path:'admin-cos-list/:id',component:AdminCosListComponent},
   {path:'ingreso-data', component:IngresoDataComponent},
   {path:'detalle-pedido', component:DetallePedidoComponent},
   {path:'data-receptor', component:DataReceptorComponent},

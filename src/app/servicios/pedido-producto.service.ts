@@ -34,7 +34,7 @@ export class PedidoProductoService {
     return this.http.delete(baseUrl);
   }
 
-  findOnePedido(pedido: any): Observable<any>{
-    return this.http.get(`${baseUrl}/findOnePedido/${pedido}`);
+  findByPedido(pedido: any): Observable<any>{
+    return this.http.get(`${baseUrl}/findByPedido/${pedido}`);
   }
 }

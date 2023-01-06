@@ -24,7 +24,7 @@ export class CosAdminLoginComponent implements OnInit {
     this.adminDB.singin(this.admin).subscribe( res =>{
       localStorage.setItem('token', res.token);
       this.adminDB.findByUsuario(this.admin.usuario).subscribe( res =>{
-        this.goToAdmin(res.id_administrador);
+        this.goToAdmin(res.ID_ADMIN);
   
       });
     }, err =>{

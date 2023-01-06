@@ -256,7 +256,13 @@ export class DataReceptorComponent implements OnInit {
   }
 
   mostrarModalInfo(){
-    this.modalService.open(this.myModalInfo);
+    this.modalService.open(this.myModalInfo).result.then( r => {
+      if(r=='cerrar'){
+        localStorage.clear();
+      }else{
+        localStorage.clear();
+      }
+    });
   }
 
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AdminColegioService } from './admin-colegio.service';
 
 const baseUrl = 'http://localhost:5000/api/pedidos';
 
@@ -37,4 +38,9 @@ export class PedidoService {
   findOneEmisor(emisor: any): Observable<any>{
     return this.http.get(`${baseUrl}/findOneEmisor/${emisor}`);
   }
+
+  findByAdmin(admin:any):Observable<any>{
+    return this.http.get(`${baseUrl}/xd/xd/xd/findPedidosCompletos?admin=${admin}`);
+  }
+
 }

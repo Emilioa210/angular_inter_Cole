@@ -57,7 +57,7 @@
 <section class="intro">
 	<div class="wrapintro">
 		<h1>BIENVENIDO</h1>
-		<h2 class="lead">COLEGIO CARDENAL SPELLMAN</h2>
+		<h2 class="lead">COLEGIO {{colegio.NOMBRE_COLEGIO}}</h2>
 	
 	</div>
 	</section>
@@ -96,7 +96,7 @@
 				<!-- begin post -->
 				<div class="col-sm-6">
 					<div class="card">
-						<div class="row">
+						<div (click)="goToPedidos()" class="row">
 							<div class="col-md-5 wrapthumbnail">
 								<a>
 								<div class="thumbnail" style="background-image:url(https://png.pngtree.com/element_our/20190524/ourlarge/pngtree-hand-drawn-learning-student-png-material-image_1094150.jpg);">
