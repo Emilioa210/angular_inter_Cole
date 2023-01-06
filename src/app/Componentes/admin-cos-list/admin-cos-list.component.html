@@ -1,171 +1,242 @@
 <ng-template #myModalPed let-modal>
-
   <div class="modal-content">
     <div class="modal-header">
       <h2 class="modal-title">DETALLE DE PEDIDO</h2>
     </div>
-    <div class="modal-body" *ngFor = "let producto of productos; let i=index">
-      <p><b>Producto:</b> {{producto.producto}}</p>
-      <p><b>Cantidad:</b> {{producto.cantidad}}</p>
-      <p><b>Precio:</b> ${{producto.precio}}</p>
-      <p><b>Total:</b> ${{producto.total}}</p>
-      
+    <div class="modal-body" *ngFor="let producto of productos; let i = index">
+      <p><b>Producto:</b> {{ producto.producto }}</p>
+      <p><b>Cantidad:</b> {{ producto.cantidad }}</p>
+      <p><b>Precio:</b> ${{ producto.precio }}</p>
+      <p><b>Total:</b> ${{ producto.total }}</p>
     </div>
-    <span class="badge badge-success rounded-pill d-inline" style="color: red;"><strong>TOTAL: ${{totales[indice]}}</strong></span>
+    <span class="badge badge-success rounded-pill d-inline" style="color: red"
+      ><strong>TOTAL: ${{ totales[indice] }}</strong></span
+    >
     <div class="modal-footer">
-      <button type="button" class="btn btn-primary" (click)="modal.close('ACEPTAR')">ACEPTAR</button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="modal.close('ACEPTAR')"
+      >
+        ACEPTAR
+      </button>
     </div>
   </div>
-
 </ng-template>
 
 <ng-template #myModalInfo let-modal>
-
   <div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title">PAGADO</h5>
     </div>
-    <div class="modal-body">
-      ¡SU PEDIDO SE HA CANCELADO CORRECTAMENTE!
-    </div>
+    <div class="modal-body">¡SU PEDIDO SE HA CANCELADO CORRECTAMENTE!</div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-primary" (click)="modal.close('ACEPTAR')">ACEPTAR</button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="modal.close('ACEPTAR')"
+      >
+        ACEPTAR
+      </button>
     </div>
   </div>
-
 </ng-template>
 
 <ng-template #myModalConf let-modal>
-
   <div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title">CONFIRMAR</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.close('Cerrado desde la ventana')"> 
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+        (click)="modal.close('Cerrado desde la ventana')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-    <div class="modal-body">
-      ¿ESTÁS SEGURO QUE DESEAS PAGAR EL PEDIDO?
-    </div>
+    <div class="modal-body">¿ESTÁS SEGURO QUE DESEAS PAGAR EL PEDIDO?</div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-primary" (click)="modal.close('Si')">Si</button>
-      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modal.close('No')">No</button>
+      <button type="button" class="btn btn-primary" (click)="modal.close('Si')">
+        Si
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        data-dismiss="modal"
+        (click)="modal.close('No')"
+      >
+        No
+      </button>
     </div>
   </div>
-
 </ng-template>
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <!-- Container wrapper -->
-    <div class="container">
-      <!-- Navbar brand -->
-      <a class="navbar-brand me-2" href="https://mdbgo.com/">
-        <img
-          src="https://intercolegialue.com/wp-content/uploads/2021/09/cropped-Logo-UE-2021-a-color-sin-circulo-103x80.png"
-          height="10"
-          alt="MDB Logo"
-          loading="lazy"
-          style="margin-top: -1px;"
-        />
-      </a>
-  
-      <!-- Toggle button -->
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-mdb-toggle="collapse"
-        data-mdb-target="#navbarButtonsExample"
-        aria-controls="navbarButtonsExample"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <i class="fas fa-bars"></i>
-      </button>
-  
-      <!-- Collapsible wrapper -->
-      <div class="collapse navbar-collapse" id="navbarButtonsExample">
-        <!-- Left links -->
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="navbar-brand" href="#!"><strong>INTERCOLEGIAL DE DULCES UE</strong></a>
-          </li>
-        </ul>
-        <!-- Left links -->
-  
-        <div class="d-flex align-items-center">
-          <button type="button" class="btn btn-primary me-3">
-            LOG OUT
-          </button>
-          <a
-            class="btn btn-dark px-3"
-            href="https://github.com/mdbootstrap/mdb-ui-kit"
-            role="button"
-            ><i class="fab fa-github"></i
-          ></a>
-        </div>
+  <!-- Container wrapper -->
+  <div class="container">
+    <!-- Navbar brand -->
+    <a class="navbar-brand me-2" href="https://mdbgo.com/">
+      <img
+        src="https://intercolegialue.com/wp-content/uploads/2021/09/cropped-Logo-UE-2021-a-color-sin-circulo-103x80.png"
+        height="10"
+        alt="MDB Logo"
+        loading="lazy"
+        style="margin-top: -1px"
+      />
+    </a>
+
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarButtonsExample"
+      aria-controls="navbarButtonsExample"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarButtonsExample">
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="navbar-brand" href="#!"
+            ><strong>INTERCOLEGIAL DE DULCES UE</strong></a
+          >
+        </li>
+      </ul>
+      <!-- Left links -->
+
+      <div class="d-flex align-items-center">
+        <button
+          type="button"
+          class="btn btn-primary me-3"
+          style="background-color: blue"
+        >
+          Logout
+        </button>
+        <a
+          class="btn btn-dark px-3"
+          href="https://github.com/mdbootstrap/mdb-ui-kit"
+          role="button"
+          ><i class="fab fa-github"></i
+        ></a>
       </div>
-      <!-- Collapsible wrapper -->
     </div>
-    <!-- Container wrapper -->
-  </nav>
-  <!-- Navbar -->
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<br />
+
+<div class="input-group mb-4">
+  <input
+    type="search"
+    placeholder="Buscador por # de orden o por el correo electrónico"
+    aria-describedby="button-addon6"
+    class="form-control"
+  />
+  <div class="input-group-append">
+    <button id="button-addon6" type="submit" class="btn btn-info">
+      <i class="fa fa-search"></i>
+    </button>
+  </div>
+</div>
+<!-- Navbar -->
 <table class="table align-middle mb-0 bg-white">
-    <thead class="bg-light">
-      <tr>
-        <th>Estudiante</th>
-        <th>Productos</th>
-        <th>Total</th>
-        <th>Status</th>
-        <th>Número de pedido</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor = "let pedido of pedidos; let i=index">
-        
-        <td>
-          <div class="d-flex align-items-center">
-            <img
-                src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                alt=""
-                style="width: 45px; height: 45px"
-                class="rounded-circle"
-                />
-            <div class="ms-3">
-              <p class="fw-bold mb-1">{{pedido.nombre_emisor}} {{pedido.apellido_emisor}}</p>
-              <p class="text-muted mb-0">Curso: {{pedido.curso}}</p>
-              <p class="text-muted mb-0">Paralelo: {{pedido.paralelo}}</p>
-              <p class="text-muted mb-0">Correo: {{pedido.correo_emisor}}</p>
-            </div>
+  <thead class="bg-light">
+    <tr>
+      <th>Estudiante</th>
+      <th>Productos</th>
+      <th>Total</th>
+      <th>Status</th>
+      <th>Número de pedido</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pedido of pedidos; let i = index">
+      <td>
+        <div class="d-flex align-items-center">
+          <img
+            src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+            alt=""
+            style="width: 45px; height: 45px"
+            class="rounded-circle"
+          />
+          <div class="ms-3">
+            <p class="fw-bold mb-1">
+              {{ pedido.nombre_emisor }} {{ pedido.apellido_emisor }}
+            </p>
+            <p class="text-muted mb-0">Curso: {{ pedido.curso }}</p>
+            <p class="text-muted mb-0">Paralelo: {{ pedido.paralelo }}</p>
+            <p class="text-muted mb-0">Correo: {{ pedido.correo_emisor }}</p>
           </div>
-        </td>
-        <td >
-          <button (click)="mostrarPedido(i)" type="button" class="btn btn-link btn-sm btn-rounded">
-            <span class="badge badge-success rounded-pill d-inline" style="color:black;"><strong>VER PEDIDO</strong></span>
-          </button>
-        </td>
-        <td><p class="fw-normal mb-1">${{totales[i]}}</p></td>
-        <td *ngIf="pedido.estado == false">
-          <span class="badge badge-success rounded-pill d-inline" style="color: red;"><strong>No Pagado</strong></span>
-        </td>
-        <td *ngIf="pedido.estado == true">
-          <span class="badge badge-success rounded-pill d-inline" style="color: rgb(27, 203, 8);"><strong>Pagado</strong></span>
-        </td>
-        <td><p class="fw-normal mb-1">{{pedido.codigo_pedido}}</p></td>
-        
-        <td *ngIf="pedido.estado == false">
-          <button (click)="confirmarPedido(i)" type="button" class="btn btn-link btn-sm btn-rounded">
-            <span class="badge badge-success rounded-pill d-inline" style="color:black;"><strong>CONFIRMAR</strong></span>
-          </button>
-        </td>
+        </div>
+      </td>
+      <td>
+        <button
+          (click)="mostrarPedido(i)"
+          type="button"
+          class="btn btn-link btn-sm btn-rounded"
+        >
+          <span
+            class="badge badge-success rounded-pill d-inline"
+            style="color: black"
+            ><strong>VER PEDIDO</strong></span
+          >
+        </button>
+      </td>
+      <td>
+        <p class="fw-normal mb-1">${{ totales[i] }}</p>
+      </td>
+      <td *ngIf="pedido.estado == false">
+        <span
+          class="badge badge-success rounded-pill d-inline"
+          style="color: red"
+          ><strong>No Pagado</strong></span
+        >
+      </td>
+      <td *ngIf="pedido.estado == true">
+        <span
+          class="badge badge-success rounded-pill d-inline"
+          style="color: rgb(27, 203, 8)"
+          ><strong>Pagado</strong></span
+        >
+      </td>
+      <td>
+        <p class="fw-normal mb-1">{{ pedido.codigo_pedido }}</p>
+      </td>
 
-        <td *ngIf="pedido.estado == true">
-          <button type="button" class="btn btn-link btn-sm btn-rounded" disabled>
-            <span class="badge badge-success rounded-pill d-inline" style="color:black;"><strong>CONFIRMAR</strong></span>
-          </button>
-        </td>
-      </tr>
+      <td *ngIf="pedido.estado == false">
+        <button
+          (click)="confirmarPedido(i)"
+          type="button"
+          class="btn btn-link btn-sm btn-rounded"
+        >
+          <span
+            class="badge badge-success rounded-pill d-inline"
+            style="color: black"
+            ><strong>CONFIRMAR</strong></span
+          >
+        </button>
+      </td>
 
-    </tbody>
-  </table>
+      <td *ngIf="pedido.estado == true">
+        <button type="button" class="btn btn-link btn-sm btn-rounded" disabled>
+          <span
+            class="badge badge-success rounded-pill d-inline"
+            style="color: black"
+            ><strong>CONFIRMAR</strong></span
+          >
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
