@@ -16,6 +16,7 @@ import { RouterOutlet } from '@angular/router';
 import { ProductosComponent } from './Componentes/productos/productos.component';
 import { DataReceptorComponent } from './Componentes/data-receptor/data-receptor.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import {JwtHelperService, JWT_OPTIONS} from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
   ],
 
-  providers: [],
+  providers: [
+    {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
+    JwtHelperService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

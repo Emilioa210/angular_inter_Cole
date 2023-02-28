@@ -9,14 +9,16 @@ import { ProductosComponent } from './Componentes/productos/productos.component'
 import { IngresoDataComponent } from './Componentes/ingreso-data/ingreso-data.component';
 import {DetallePedidoComponent} from './Componentes/detalle-pedido/detalle-pedido.component';
 import { DataReceptorComponent } from './Componentes/data-receptor/data-receptor.component';
+import { AuthGuard } from './guardianes/auth.guard';
+import { RoleGuard } from './guardianes/role.guard';
 
 const routes: Routes = [
   {path:"home",component:HomeComponent},
   {path:'productos/:id',component:ProductosComponent},
   {path:'carrito',component:CarritoComponent},
   {path:'cos_admin_login',component:CosAdminLoginComponent},
-  {path:'admin-cos/:id',component:AdminCosComponent},
-  {path:'admin-cos-list/:id',component:AdminCosListComponent},
+  {path:'admin-cos/:id',component:AdminCosComponent, canActivate: [AuthGuard]},
+  {path:'admin-cos-list/:id',component:AdminCosListComponent, canActivate: [AuthGuard]},
   {path:'ingreso-data', component:IngresoDataComponent},
   {path:'detalle-pedido', component:DetallePedidoComponent},
   {path:'data-receptor', component:DataReceptorComponent},

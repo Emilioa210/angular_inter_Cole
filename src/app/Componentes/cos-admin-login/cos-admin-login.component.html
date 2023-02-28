@@ -1,4 +1,20 @@
 <div class="wrapper">
+    <ng-template #myModalInfo let-modal>
+
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">INCORRECTO</h5>
+          </div>
+          <div class="modal-body">
+            USUARIO O CLAVE INCORRECTOS
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="modal.close('ACEPTAR')">ACEPTAR</button>
+          </div>
+        </div>
+      
+      </ng-template>
+      
     <div class="logo">
         <img src="https://intercolegialue.com/wp-content/uploads/2021/09/cropped-Logo-UE-2021-a-color-sin-circulo-103x80.png" alt="">
     </div>

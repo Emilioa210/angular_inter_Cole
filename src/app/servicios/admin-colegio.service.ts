@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {JwtHelperService} from '@auth0/angular-jwt'
 
 const baseUrl = 'http://localhost:5000/api/admins';
 
@@ -9,7 +10,8 @@ const baseUrl = 'http://localhost:5000/api/admins';
 })
 export class AdminColegioService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private jwtHelper: JwtHelperService) { }
 
   getAll(): Observable<any>{
     return this.http.get(baseUrl);
@@ -44,5 +46,13 @@ export class AdminColegioService {
 
   findByUsuario(usuario: any): Observable<any>{
     return this.http.get(`${baseUrl}/xd/findByUsuario/${usuario}`);
+  }
+
+  isAuth(): boolean{
+    const token = localStorage.getItem('token')!;
+    if(this.jwtHelper.isTokenExpired(token) || !localStorage.getItem('token')){
+      return false;
+    }
+    return true;
   }
 }

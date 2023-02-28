@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AdminColegioService } from 'src/app/servicios/admin-colegio.service';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-cos-admin-login',
@@ -8,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./cos-admin-login.component.css']
 })
 export class CosAdminLoginComponent implements OnInit {
+  @ViewChild("myModalInfo", { static: false }) myModalInfo!: TemplateRef<any>;
 
   admin = {
     usuario:'',
@@ -15,7 +17,8 @@ export class CosAdminLoginComponent implements OnInit {
   }
 
   constructor(private adminDB: AdminColegioService,
-              private router:Router) { }
+              private router:Router,
+              private modalService: NgbModal) { }
 
   ngOnInit(): void {
   }
@@ -28,7 +31,7 @@ export class CosAdminLoginComponent implements OnInit {
   
       });
     }, err =>{
-      console.log(err);
+      this.mostrarModalInfo();
     });
  
   }
@@ -38,6 +41,14 @@ export class CosAdminLoginComponent implements OnInit {
       window.location.replace(`admin-cos/`+id);
     });
         //this.router.navigate(['admin', id]);
+  }
+
+  mostrarModalInfo(){
+    this.modalService.open(this.myModalInfo).result.then( r => {
+      console.log("Tu respuesta ha sido: " + r);
+    }, error => {
+      console.log(error);
+    });
   }
 
 }

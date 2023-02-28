@@ -2,7 +2,8 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { PedidoService } from 'src/app/servicios/pedido.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import decode from 'jwt-decode';
+import { AdminColegioService } from 'src/app/servicios/admin-colegio.service';
 
 @Component({
   selector: 'app-admin-cos-list',
@@ -15,6 +16,8 @@ export class AdminCosListComponent implements OnInit {
   @ViewChild("myModalConf", {static: false}) myModalConf!: TemplateRef<any>;
   @ViewChild("myModalInfo", { static: false }) myModalInfo!: TemplateRef<any>;
 
+  role: any =null;
+  admin = '';
   pedidos: Array<any> = [];
   totales: Array<any> = [];
   productos: Array<any> = [];
@@ -29,14 +32,27 @@ export class AdminCosListComponent implements OnInit {
     FECHA_PEDIDO: null
   };
 
+  busqueda = '';
+
   constructor(private pedidoDB: PedidoService,
               private router: Router,
               private route: ActivatedRoute,
-              private modalService: NgbModal) { }
+              private modalService: NgbModal,
+              private adminDB:AdminColegioService) { }
 
   ngOnInit(): void {
     var id = this.route.snapshot.paramMap.get('id');
-    this.pedidoDB.findByAdmin(id).subscribe(res=>{
+    const token:any = localStorage.getItem('token');
+    try{
+      this.role = decode(token);
+      
+    }catch(e){
+      console.log(e);
+    }
+    if(this.adminDB.isAuth() && this.role.ID_ADMIN != null && this.role.ID_ADMIN == id){
+       console.log('Sesión iniciada Admin');
+    
+       this.pedidoDB.findByAdmin(id).subscribe(res=>{
         this.pedidos = res as any [];
         
         this.pedidos.map(pedido=>{
@@ -48,6 +64,14 @@ export class AdminCosListComponent implements OnInit {
         });
         
     });
+          
+    }else{
+         console.log("Sesión no iniciada");
+         localStorage.removeItem('token');
+         this.router.navigate([]).then(_result => {
+           window.location.replace(`cos_admin_login`);
+         });
+     }
   }
 
   mostrarPedido(i:number){
@@ -99,6 +123,37 @@ export class AdminCosListComponent implements OnInit {
     }, error => {
       console.log(error);
     });
+  }
+
+  buscarPedido(){
+    var busqueda = this.busqueda.trim();
+    if(busqueda == ""){
+        window.location.reload();
+    }else{
+
+      var id = this.route.snapshot.paramMap.get('id');
+      this.pedidoDB.findByAdmin(id).subscribe(res=>{
+        this.pedidos = res as any [];
+        this.pedidos = this.pedidos.filter(function(pedido) {
+            var nombre_completo = pedido.nombre_emisor.toUpperCase() + ' '+ pedido.apellido_emisor.toUpperCase();
+            if (pedido.codigo_pedido == busqueda || pedido.correo_emisor == busqueda || nombre_completo.includes(busqueda.toUpperCase())){
+              return true;
+            }
+              
+          return false;
+        });
+          
+          
+          
+        this.pedidos.map(pedido=>{
+            var total = 0;
+            pedido.productos.map((producto: any) =>{
+              total += producto.total;
+            });
+            this.totales.push(total);
+        });
+      });
+    }
   }
 
 }
