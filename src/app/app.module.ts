@@ -17,6 +17,7 @@ import { ProductosComponent } from './Componentes/productos/productos.component'
 import { DataReceptorComponent } from './Componentes/data-receptor/data-receptor.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import {JwtHelperService, JWT_OPTIONS} from '@auth0/angular-jwt';
+import { ComprobanteComponent } from './Componentes/comprobante/comprobante.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {JwtHelperService, JWT_OPTIONS} from '@auth0/angular-jwt';
     AdminCosListComponent,
     IngresoDataComponent,
     ProductosComponent,
-    DataReceptorComponent
+    DataReceptorComponent,
+    ComprobanteComponent
   ],
   imports: [
     BrowserModule,
