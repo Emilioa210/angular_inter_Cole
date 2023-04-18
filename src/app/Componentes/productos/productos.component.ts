@@ -32,13 +32,25 @@ export class ProductosComponent implements OnInit {
   }
 
   saveProducto(){
-    let recoveredData = localStorage.getItem('productos')
-    let recoveredCantidad = localStorage.getItem('cantidades')
+
+    let recoveredData = localStorage.getItem('productos');
+    let recoveredCantidad = localStorage.getItem('cantidades');
+    console.log("PRODUCTOS: "+typeof(JSON.parse(recoveredData!)[0].CODIGO_PRODUCTO));
+    console.log("producto: "+typeof(this.producto.CODIGO_PRODUCTO));
+    console.log("VALIDACION: "+this.producto.CODIGO_PRODUCTO ==JSON.parse(recoveredData!)[0].CODIGO_PRODUCTO);
     if(recoveredData == null && recoveredCantidad== null){
       this.productos.push(this.producto);
       this.cantidades.push(this.cantidad);
       localStorage.setItem('productos',JSON.stringify(this.productos))
       localStorage.setItem('cantidades',JSON.stringify(this.cantidades))
+
+    }else if(JSON.parse(recoveredData!).includes(this.producto)){
+      var posicion = JSON.parse(recoveredData!).indexOf(this.producto);
+      console.log("POSICION PRODUCTO: "+posicion);
+      this.cantidades = JSON.parse(recoveredCantidad!);
+      this.cantidades[posicion] = this.cantidades[posicion]+this.cantidad;
+      localStorage.setItem('cantidades',JSON.stringify(this.cantidades));
+
     }else{
       this.productos = JSON.parse(recoveredData!);
       this.cantidades = JSON.parse(recoveredCantidad!);
@@ -47,7 +59,6 @@ export class ProductosComponent implements OnInit {
       localStorage.setItem('productos',JSON.stringify(this.productos));
       localStorage.setItem('cantidades',JSON.stringify(this.cantidades));
     }
-    //localStorage.setItem('producto', JSON.stringify(this.producto));
-    //localStorage.setItem('cantidad', this.cantidad.toString());
+
   }
 }

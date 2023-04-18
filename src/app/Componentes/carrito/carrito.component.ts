@@ -40,11 +40,9 @@ export class CarritoComponent implements OnInit {
     this.productos = JSON.parse(localStorage.getItem('productos')!);
     this.cantidades = JSON.parse(localStorage.getItem('cantidades')!);
     var auxProd = this.productos.filter((item) => item.CODIGO_PRODUCTO !== this.productos[i].CODIGO_PRODUCTO);
-    //var auxCant = this.cantidades.filter((item) => item !== this.cantidades[i]);
-    //let auxProd = this.productos.splice(i,i+1);
+
     this.cantidades.splice(i,1);
-    //console.log("Producto eliminado: "+auxProd);
-    //console.log("Cantidad eliminada: "+auxCant);
+
     localStorage.setItem('productos',JSON.stringify(auxProd));
     localStorage.setItem('cantidades',JSON.stringify(this.cantidades));  
     window.location.reload();
