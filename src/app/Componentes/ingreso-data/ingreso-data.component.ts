@@ -25,7 +25,7 @@ export class IngresoDataComponent implements OnInit {
       apodo: '',
       regalo_apodo: false,
       mensaje: '',
-      tipo: 0
+      tipo: null
   }
   constructor(private colegioDB: ColegioService,
               private cursoParaleloDB: CursoParaleloService,

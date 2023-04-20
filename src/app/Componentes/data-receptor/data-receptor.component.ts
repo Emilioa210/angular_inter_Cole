@@ -41,7 +41,8 @@ export class DataReceptorComponent implements OnInit {
     id_curso_paralelo: null,
     apodo: '',
     regalo_apodo: false,
-    mensaje: ''
+    mensaje: '',
+    tipo: null
 }
   colegios: Array<any> = [];
   cursos: Array<any> = [];
@@ -140,7 +141,8 @@ export class DataReceptorComponent implements OnInit {
           APELLIDO_EMISOR: this.dataEmisor.apellido,
           CORREO_EMISOR: this.dataEmisor.correo,
           APODO: this.dataEmisor.apodo,
-          TELEFONO_EMISOR: this.dataEmisor.telefono
+          TELEFONO_EMISOR: this.dataEmisor.telefono,
+          TIPO_ENVIO: this.dataEmisor.tipo
         };
     
         const Receptor ={
@@ -258,9 +260,9 @@ export class DataReceptorComponent implements OnInit {
   mostrarModalInfo(){
     this.modalService.open(this.myModalInfo).result.then( r => {
       if(r=='cerrar'){
-        localStorage.clear();
+        this.router.navigate(['comprobante']);
       }else{
-        localStorage.clear();
+        this.router.navigate(['comprobante']);
       }
     });
   }

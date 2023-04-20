@@ -2,7 +2,7 @@
   <div class="container mt-3">
     <div class="card animate__animated animate__fadeIn">
       <div class="card-header">
-        <p><strong>FECHA:</strong> 01/01/2018</p>
+        <p><strong>FECHA:</strong> {{fecha}}</p>
 
         <div style="padding-right: 70%">
           <span class="float-right"
@@ -12,7 +12,7 @@
         </div>
         <div style="padding-right: 70%">
           <span class="float-right"
-            ><strong>NÚMERO DE ORDEN: </strong> 255</span
+            ><strong>NÚMERO DE ORDEN: </strong> {{orden}}</span
           >
         </div>
       </div>
@@ -21,23 +21,23 @@
           <div class="col-6 col-md-6">
             <h6 class="mb-2">DE</h6>
             <div>
-              <strong>EMILIO ANACI</strong>
+              <strong>{{emisor.nombre}} {{emisor.apellido}}</strong>
             </div>
-            <div>COLEGIO: SAN GABRIEL</div>
-            <div>CURSO: OCTAVO</div>
-            <div>PARALELO: A</div>
-            <div>Email: CORREO</div>
-            <div>Phone: 0995687659</div>
+            <div>COLEGIO: {{emisor.colegio}}</div>
+            <div>CURSO: {{emisor.id_curso_paralelo}}</div>
+            <div>PARALELO: {{emisor.id_curso_paralelo}}</div>
+            <div>Email: {{emisor.correo}}</div>
+            <div>Phone: {{emisor.telefono}}</div>
           </div>
 
           <div class="col-6 col-md-6">
             <h6 class="mb-2">PARA:</h6>
             <div>
-              <strong>JACK NARVÁEZ</strong>
+              <strong>{{receptor.nombre}} {{receptor.apellido}}</strong>
             </div>
-            <div>COLEGIO: SPELLMAN</div>
-            <div>CURSO: TERCERO</div>
-            <div>PARALELO: A</div>
+            <div>COLEGIO: {{receptor.colegio}}</div>
+            <div>CURSO: {{receptor.id_curso_paralelo}}</div>
+            <div>PARALELO: {{receptor.id_curso_paralelo}}</div>
           </div>
         </div>
 
@@ -56,17 +56,17 @@
                 <th scope="col" width="10%" class="text-right">Total</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody *ngFor = "let producto of productos; let i=index">
               <tr>
-                <td class="text-left">1</td>
-                <td class="item_name">GOMITA DE CARAMELO</td>
+                <td class="text-left">{{i+1}}</td>
+                <td class="item_name">{{producto.NOMBRE_PRODUCTO}}</td>
                 <td class="item_desc d-none d-sm-table-cell">
-                  INTERCOLEGIAL DE DULCES
+                  {{producto.DESCRIPCION_PRODUCTO}}
                 </td>
 
-                <td class="text-right">1,00$</td>
-                <td class="text-right">1</td>
-                <td class="text-right">1,00$</td>
+                <td class="text-right">{{producto.PRECIO_PRODUCTO}}$</td>
+                <td class="text-right">{{cantidades[i]}}</td>
+                <td class="text-right">XXXX$</td>
               </tr>
             </tbody>
           </table>
@@ -81,18 +81,27 @@
                   <td class="left">
                     <strong>Subtotal</strong>
                   </td>
-                  <td class="text-right bg-light">1,00$</td>
+                  <td class="text-right bg-light">{{total}}$</td>
                 </tr>
                 <tr>
                   <td class="left">
                     <strong>Total</strong>
                   </td>
                   <td class="text-right bg-light">
-                    <strong>1,00$</strong>
+                    <strong>{{total}}$</strong>
                   </td>
                 </tr>
               </tbody>
             </table>
+            <div
+              class="btn-group-toggle"
+              data-toggle="buttons"
+              style="text-align: center"
+            >
+              <label class="btn btn-secondary active">
+                <input type="checkbox" checked autocomplete="off" /> Checked
+              </label>
+            </div>
           </div>
         </div>
       </div>
