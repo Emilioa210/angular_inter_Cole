@@ -1,145 +1,319 @@
 <main class="main">
-    <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
-        <div class="container">
-            <h1 class="page-title">INFORMACIÓN<span> COMPRA</span></h1>
-        </div><!-- End .container -->
-    </div><!-- End .page-header -->
+  <div
+    class="page-header text-center"
+    style="background-image: url('assets/images/page-header-bg.jpg')"
+  >
+    <div class="container">
+      <h1 class="page-title">INFORMACIÓN<span> COMPRA</span></h1>
+    </div>
+    <!-- End .container -->
+  </div>
+  <!-- End .page-header -->
 
+  <div class="page-content">
+    <div class="checkout">
+      <div class="container">
+        <form
+          action="#"
+          #myForm="ngForm"
+          (ngSubmit)="myForm.valid && saveEmisor()"
+        >
+          <div class="row">
+            <div class="col-lg-9">
+              <h2 class="checkout-title">DATOS DEL EMISOR</h2>
+              <!-- End .checkout-title -->
+              <div class="row">
+                <div class="col-sm-6">
+                  <label>Nombre *</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    required
+                    [(ngModel)]="emisor.nombre"
+                    name="nombre"
+                    maxlength="20"
+                  />
+                  <div *ngIf="myForm.controls['nombre'].errors?.['required']">
+                    <p style="color: red">Este campo es obligatorio.</p>
+                  </div>
+                </div>
+                <!-- End .col-sm-6 -->
 
-    <div class="page-content">
-        <div class="checkout">
-            <div class="container">
-                
-                <form action="#">
-                    <div class="row">
-                        <div class="col-lg-9">
-                            <h2 class="checkout-title">DATOS DEL EMISOR</h2><!-- End .checkout-title -->
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>Nombre *</label>
-                                        <input type="text" class="form-control" required [(ngModel)]="emisor.nombre" name="nombre">
-                                    </div><!-- End .col-sm-6 -->
+                <div class="col-sm-6">
+                  <label>Apellido *</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    required
+                    [(ngModel)]="emisor.apellido"
+                    name="apellido"
+                  />
+                  <div *ngIf="myForm.controls['apellido'].errors?.['required']">
+                    <p style="color: red">Este campo es obligatorio.</p>
+                  </div>
+                </div>
+                <!-- End .col-sm-6 -->
+              </div>
+              <!-- End .row -->
 
-                                    <div class="col-sm-6">
-                                        <label>Apellido *</label>
-                                        <input type="text" class="form-control" required [(ngModel)]="emisor.apellido" name="apellido">
-                                    </div><!-- End .col-sm-6 -->
-                                </div><!-- End .row -->
+              <label>Correo</label>
+              <input
+                type="email"
+                class="form-control"
+                required
+                [(ngModel)]="emisor.correo"
+                name="email"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              />
+              <div *ngIf="myForm.controls['email'].errors?.['required']">
+                <p style="color: red">Este campo es obligatorio.</p>
+              </div>
+              <div *ngIf="myForm.controls['email'].errors?.['pattern']">
+                <p style="color: red">Coloca el email correctamente.</p>
+              </div>
 
-                                <label>Correo</label>
-                                <input type="email" class="form-control" required [(ngModel)]="emisor.correo" name="correo">
+              <label>Teléfono *</label>
+              <input
+                type="tel"
+                class="form-control"
+                required
+                [(ngModel)]="emisor.telefono"
+                name="telefono"
+                maxlength="10"
+              />
+              <div>
+                <div *ngIf="myForm.controls['telefono'].errors?.['required']">
+                  <p style="color: red">
+                    Este campo es obligatorio - Ejemplo 0995665459.
+                  </p>
+                </div>
+              </div>
 
-                                <label>Teléfono *</label>
-                                <input type="tel" class="form-control" required [(ngModel)]="emisor.telefono" name="telefono">
+              <label>Colegio</label>
+              <select
+                [(ngModel)]="emisor.colegio"
+                (change)="selectColegio($event)"
+                class="form-control"
+                name="colegios"
+                required
+              >
+                <option disabled selected>Seleccionar Colegio</option>
+                <option
+                  *ngFor="let colegio of colegios; let i = index"
+                  [value]="colegio.CODIGO_COLEGIO"
+                >
+                  {{ colegio.NOMBRE_COLEGIO }}
+                </option>
+              </select>
+              <div *ngIf="myForm.controls['colegios'].errors?.['required']">
+                <p style="color: red">Este campo es obligatorio</p>
+              </div>
 
-                                <label>Colegio</label>
-                                <select [(ngModel)]="emisor.colegio" (change)="selectColegio($event)" class="form-control" name="colegios">
-                                    <option selected>Seleccionar Colegio</option>
-                                    <option *ngFor = "let colegio of colegios; let i=index;" [value]="colegio.CODIGO_COLEGIO">{{colegio.NOMBRE_COLEGIO}}</option>
-                                </select>
+              <div class="row">
+                <div class="col-sm-6">
+                  <label>Curso *</label>
+                  <select
+                    [(ngModel)]="curso"
+                    (change)="selectCurso($event)"
+                    class="form-control"
+                    name="cursos"
+                    required
+                  >
+                    <option disabled selected>Seleccionar Curso</option>
+                    <option
+                      *ngFor="let curso of cursos; let i = index"
+                      [value]="curso.CODIGO_CURSO"
+                    >
+                      {{ curso.NOMBRE_CURSO }}
+                    </option>
+                  </select>
+                  <div *ngIf="myForm.controls['cursos'].errors?.['required']">
+                    <p style="color: red">Este campo es obligatorio</p>
+                  </div>
+                </div>
+                <!-- End .col-sm-6 -->
 
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>Curso *</label>
-                                        <select [(ngModel)]="curso" (change)="selectCurso($event)" class="form-control" name="cursos">
-                                            <option selected>Seleccionar Curso</option>
-                                            <option *ngFor = "let curso of cursos; let i=index;" [value]="curso.CODIGO_CURSO">{{curso.NOMBRE_CURSO}}</option>
-                                        </select>
-                                    </div><!-- End .col-sm-6 -->
+                <div class="col-sm-6">
+                  <label>Paralelo *</label>
+                  <select
+                    [(ngModel)]="paralelo"
+                    (change)="selectParalelo($event)"
+                    class="form-control"
+                    name="paralelo"
+                    required
+                  >
+                    <option disabled selected>Seleccionar Paralelo</option>
+                    <option
+                      *ngFor="let paralelo of paralelos; let i = index"
+                      [value]="paralelo.CODIGO_PARALELO"
+                    >
+                      {{ paralelo.NOMBRE_PARALELO }}
+                    </option>
+                  </select>
+                  <div *ngIf="myForm.controls['paralelo'].errors?.['required']">
+                    <p style="color: red">Este campo es obligatorio</p>
+                  </div>
+                </div>
+                <!-- End .col-sm-6 -->
+              </div>
+              <!-- End .row -->
 
-                                    <div class="col-sm-6">
-                                        <label>Paralelo *</label>
-                                        <select [(ngModel)]="paralelo" (change)="selectParalelo($event)" class="form-control" name="paralelo">
-                                            <option selected>Seleccionar Paralelo</option>
-                                            <option *ngFor = "let paralelo of paralelos; let i=index;" [value]="paralelo.CODIGO_PARALELO">{{paralelo.NOMBRE_PARALELO}}</option>
-                                        </select>
-                                    </div><!-- End .col-sm-6 -->
-                                </div><!-- End .row -->
+              <div class="row">
+                <div class="col-sm-6">
+                  <label>Apodo (opcional)*</label>
+                  <input
+                    [(ngModel)]="emisor.apodo"
+                    type="text"
+                    class="form-control"
+                    maxlength="10"
+                    name="apodo"
+                  />
+                  <div *ngIf="myForm.controls['apodo'].errors?.['maxlength']">
+                    <p style="color: red">
+                      Solo puedes escribir un Apodo de 10 caracteres
+                    </p>
+                  </div>
+                  <p style="color: blue">Solamente 10 caracteres opcional</p>
+                </div>
 
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>Apodo (opcional)*</label>
-                                        <input [(ngModel)]="emisor.apodo" type="text" class="form-control" required name="apodo">
-                                    </div><!-- End .col-sm-6 -->
+                <!-- End .col-sm-6 -->
+              </div>
+              <!-- End .row -->
+              <!-- End .row
+              Aquí estaba el checbox para que le hagas funcionar con el select 
 
-                                </div><!-- End .row -->
+              <div class="custom-control custom-checkbox">
+                <input
+                  [(ngModel)]="emisor.regalo_apodo"
+                  type="checkbox"
+                  class="custom-control-input"
+                  id="checkout-diff-address"
+                  ng-true-value="false"
+                  ng-false-value="true"
+                  name="apodo?"
+                />
+                <label class="custom-control-label" for="checkout-diff-address">
+                  Enviar regalo con apodo</label
+                >
+              </div>
+                 -->
+              <div class="col-sm-6">
+                <label>Tipo de Envió</label>
+                <select
+                  class="form-control"
+                  name="tipo"
+                  required
+                  placeholder="Selecciona en tipo"
+                >
+                  <option disabled selected>Seleccionar tipo</option>
+                  <option selected>Enviar con el Nombre</option>
+                  <option selected>Enviar con el Apodo</option>
+                  <option selected>Enviar con Anonimamente</option>
+                </select>
+                <div *ngIf="myForm.controls['tipo'].errors?.['required']">
+                  <p style="color: red">Este campo es obligatorio</p>
+                </div>
+              </div>
 
-                                <div class="custom-control custom-checkbox">
-                                    <input [(ngModel)]="emisor.regalo_apodo" type="checkbox" class="custom-control-input" id="checkout-diff-address" ng-true-value="false" ng-false-value="true" name="apodo?">
-                                    <label class="custom-control-label" for="checkout-diff-address"> Enviar regalo con apodo</label>
-                                </div><!-- End .custom-checkbox -->
+              <!-- End .custom-checkbox -->
 
-                                <label>Mensaje</label>
-                                <textarea [(ngModel)]="emisor.mensaje" class="form-control" cols="30" rows="4" placeholder="Deja un lindo mensaje para esa persona especial :D" name="mensaje"></textarea>
-                        </div><!-- End .col-lg-9 -->
-                        <aside class="col-lg-3">
-                            <div class="summary">
-                                <h3 class="summary-title">Your Order</h3><!-- End .summary-title -->
+              <label>Mensaje</label>
+              <textarea
+                [(ngModel)]="emisor.mensaje"
+                class="form-control"
+                cols="30"
+                rows="4"
+                placeholder="Deja un lindo mensaje para esa persona especial :D"
+                name="mensaje"
+                maxlength="30"
+              ></textarea>
+              <p style="color: blue">
+                Solamente 30 caracteres es opcional el envió de mensaje
+              </p>
+              <br />
+              <br />
+              <br />
+            </div>
+            <!-- End .col-lg-9 -->
+            <aside class="col-lg-3">
+              <div class="summary">
+                <h3 class="summary-title">Your Order</h3>
+                <!-- End .summary-title -->
 
-                                <table class="table table-summary">
-                                    <thead>
-                                        <tr>
-                                            <th>Product</th>
-                                            <th>Total</th>
-                                        </tr>
-                                    </thead>
+                <table class="table table-summary">
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
 
-                                    <tbody>
-                                        <tr>
-                                            <td><a href="#">Beige knitted elastic runner shoes</a></td>
-                                            <td>$84.00</td>
-                                        </tr>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <a href="#">Beige knitted elastic runner shoes</a>
+                      </td>
+                      <td>$84.00</td>
+                    </tr>
 
-                                        <tr>
-                                            <td><a href="#">Blue utility pinafore denimdress</a></td>
-                                            <td>$76,00</td>
-                                        </tr>
-                                        <tr class="summary-subtotal">
-                                            <td>Subtotal:</td>
-                                            <td>$160.00</td>
-                                        </tr><!-- End .summary-subtotal -->
-                                        <tr>
-                                            <td>Shipping:</td>
-                                            <td>Free shipping</td>
-                                        </tr>
-                                        <tr class="summary-total">
-                                            <td>Total:</td>
-                                            <td>$160.00</td>
-                                        </tr><!-- End .summary-total -->
-                                    </tbody>
-                                </table><!-- End .table table-summary -->
+                    <tr>
+                      <td><a href="#">Blue utility pinafore denimdress</a></td>
+                      <td>$76,00</td>
+                    </tr>
+                    <tr class="summary-subtotal">
+                      <td>Subtotal:</td>
+                      <td>$160.00</td>
+                    </tr>
+                    <!-- End .summary-subtotal -->
+                    <tr>
+                      <td>Shipping:</td>
+                      <td>Free shipping</td>
+                    </tr>
+                    <tr class="summary-total">
+                      <td>Total:</td>
+                      <td>$160.00</td>
+                    </tr>
+                    <!-- End .summary-total -->
+                  </tbody>
+                </table>
+                <!-- End .table table-summary -->
 
-                                <div class="accordion-summary" id="accordion-payment">
-                                    <div class="card">
-                                        <div class="card-header" id="heading-1">
-                                            <h2 class="card-title">
-                                                <a (click)="saveEmisor()" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="collapse-1">
-                                                    Siguiente :D
-                                                </a>
-                                               
-                                            </h2>
-                                        </div><!-- End .card-header -->
-                                        <div id="collapse-1" class="collapse show" aria-labelledby="heading-1" data-parent="#accordion-payment">
-                                            <div class="card-body">
-                                               No olvides de llenar correctamente tus datos 
-                                            </div><!-- End .card-body -->
-                                        </div><!-- End .collapse -->
-                                    </div><!-- End .card -->
-
-                                 
-
-                               
-
-
-                                  
-                                </div><!-- End .accordion -->
-
-                            
-                            </div><!-- End .summary -->
-                        </aside><!-- End .col-lg-3 -->
-                    </div><!-- End .row -->
-                </form>
-            </div><!-- End .container -->
-        </div><!-- End .checkout -->
-    </div><!-- End .page-content -->
-</main><!-- End .main -->
+                <div class="accordion-summary" id="accordion-payment">
+                  <div class="card">
+                    <div class="card-header" id="heading-1">
+                      <h2 class="card-title">
+                        <button type="submit">Siguiente :D</button>
+                      </h2>
+                    </div>
+                    <!-- End .card-header -->
+                    <div
+                      id="collapse-1"
+                      class="collapse show"
+                      aria-labelledby="heading-1"
+                      data-parent="#accordion-payment"
+                    >
+                      <div class="card-body">
+                        No olvides de llenar correctamente tus datos
+                      </div>
+                      <!-- End .card-body -->
+                    </div>
+                    <!-- End .collapse -->
+                  </div>
+                  <!-- End .card -->
+                </div>
+                <!-- End .accordion -->
+              </div>
+              <!-- End .summary -->
+            </aside>
+            <!-- End .col-lg-3 -->
+          </div>
+          <!-- End .row -->
+        </form>
+      </div>
+      <!-- End .container -->
+    </div>
+    <!-- End .checkout -->
+  </div>
+  <!-- End .page-content -->
+</main>
+<!-- End .main -->

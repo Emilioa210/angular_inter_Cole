@@ -9,6 +9,7 @@ import { ProductosComponent } from './Componentes/productos/productos.component'
 import { IngresoDataComponent } from './Componentes/ingreso-data/ingreso-data.component';
 import {DetallePedidoComponent} from './Componentes/detalle-pedido/detalle-pedido.component';
 import { DataReceptorComponent } from './Componentes/data-receptor/data-receptor.component';
+import { ComprobanteComponent } from './Componentes/comprobante/comprobante.component';
 import { AuthGuard } from './guardianes/auth.guard';
 import { RoleGuard } from './guardianes/role.guard';
 
@@ -22,6 +23,9 @@ const routes: Routes = [
   {path:'ingreso-data', component:IngresoDataComponent},
   {path:'detalle-pedido', component:DetallePedidoComponent},
   {path:'data-receptor', component:DataReceptorComponent},
+  {path:'comprobante', component:ComprobanteComponent},
+
+
 
   {path:"**", redirectTo:"home"}
 ];
