@@ -202,13 +202,14 @@
                 <select
                   class="form-control"
                   name="tipo"
+                  [(ngModel)]="emisor.tipo"
                   required
                   placeholder="Selecciona en tipo"
                 >
                   <option disabled selected>Seleccionar tipo</option>
-                  <option selected>Enviar con el Nombre</option>
-                  <option selected>Enviar con el Apodo</option>
-                  <option selected>Enviar con Anonimamente</option>
+                  <option [value]=1 selected>Enviar con el Nombre</option>
+                  <option [value]=2 selected>Enviar con el Apodo</option>
+                  <option [value]=3 selected>Enviar con Anonimamente</option>
                 </select>
                 <div *ngIf="myForm.controls['tipo'].errors?.['required']">
                   <p style="color: red">Este campo es obligatorio</p>

@@ -24,7 +24,8 @@ export class IngresoDataComponent implements OnInit {
       id_curso_paralelo: null,
       apodo: '',
       regalo_apodo: false,
-      mensaje: ''
+      mensaje: '',
+      tipo: 0
   }
   constructor(private colegioDB: ColegioService,
               private cursoParaleloDB: CursoParaleloService,
@@ -39,6 +40,7 @@ export class IngresoDataComponent implements OnInit {
 
   selectColegio(event: any){
     var e = event.target.value;
+    console.log("CLAVE COLEGIO: "+e);
     this.colegioDB.findCursos(e).subscribe(res=>{
       this.cursos=res as any [];
       var hash:any = {};

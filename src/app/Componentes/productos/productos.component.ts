@@ -39,6 +39,12 @@ export class ProductosComponent implements OnInit {
       this.cantidades.push(this.cantidad);
       localStorage.setItem('productos',JSON.stringify(this.productos))
       localStorage.setItem('cantidades',JSON.stringify(this.cantidades))
+    }else if(JSON.parse(recoveredData!).includes(this.producto)){
+      var posicion = JSON.parse(recoveredData!).indexOf(this.producto);
+      console.log("POSICION PRODUCTO: "+posicion);
+      this.cantidades = JSON.parse(recoveredCantidad!);
+      this.cantidades[posicion] = this.cantidades[posicion]+this.cantidad;
+      localStorage.setItem('cantidades',JSON.stringify(this.cantidades));
     }else{
       this.productos = JSON.parse(recoveredData!);
       this.cantidades = JSON.parse(recoveredCantidad!);
