@@ -27,18 +27,19 @@ export class ProductosComponent implements OnInit {
     var id = this.route.snapshot.paramMap.get('id');
     this.productoDB.get(id).subscribe(res=>{
         this.producto = res;
-        console.log(this.producto)
+        //console.log(this.producto)
     });
   }
 
   saveProducto(){
-
     let recoveredData = localStorage.getItem('productos');
     let recoveredCantidad = localStorage.getItem('cantidades');
-    console.log("PRODUCTOS: "+typeof(JSON.parse(recoveredData!)[0].CODIGO_PRODUCTO));
+    var p = JSON.parse(recoveredData!).includes(this.producto);
+    console.log("CONDICION: "+p);
+    /*console.log("PRODUCTOS: "+typeof(JSON.parse(recoveredData!)[0].CODIGO_PRODUCTO));
     console.log("producto: "+typeof(this.producto.CODIGO_PRODUCTO));
-    console.log("VALIDACION: "+this.producto.CODIGO_PRODUCTO ==JSON.parse(recoveredData!)[0].CODIGO_PRODUCTO);
-    if(recoveredData == null && recoveredCantidad== null){
+    console.log("VALIDACION: "+this.producto.CODIGO_PRODUCTO ==JSON.parse(recoveredData!)[0].CODIGO_PRODUCTO); */
+    if(recoveredData == null && recoveredCantidad== null){ 
       this.productos.push(this.producto);
       this.cantidades.push(this.cantidad);
       localStorage.setItem('productos',JSON.stringify(this.productos))
