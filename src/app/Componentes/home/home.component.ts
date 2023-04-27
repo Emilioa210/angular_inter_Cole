@@ -17,7 +17,8 @@ export class HomeComponent implements OnInit {
         this.productos = res as any[];
         console.log(this.productos);
     });
-    
+
+    //localStorage.setItem('productos', JSON.stringify([]));
   }
 
   goToProducto(i:number){

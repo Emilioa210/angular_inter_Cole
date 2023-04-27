@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { AdminColegioService } from 'src/app/servicios/admin-colegio.service';
 import decode from 'jwt-decode';
 
@@ -17,9 +17,12 @@ export class HeaderComponent implements OnInit {
               private admin:AdminColegioService) { }
 
   ngOnInit(): void {
+
     this.verifyAdmin = this.canActivate();
-    this.productos = JSON.parse(localStorage.getItem('productos')!);
-    this.items = this.productos.length;
+    if (localStorage.getItem('productos') !== null) {
+      this.productos = JSON.parse(localStorage.getItem('productos')!);
+      this.items = this.productos.length;
+    } 
     
   }
 

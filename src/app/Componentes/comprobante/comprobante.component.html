@@ -23,9 +23,9 @@
             <div>
               <strong>{{emisor.nombre}} {{emisor.apellido}}</strong>
             </div>
-            <div>COLEGIO: {{emisor.colegio}}</div>
-            <div>CURSO: {{emisor.id_curso_paralelo}}</div>
-            <div>PARALELO: {{emisor.id_curso_paralelo}}</div>
+            <div>COLEGIO: {{colegio_emisor}}</div>
+            <div>CURSO: {{curso_emisor}}</div>
+            <div>PARALELO: {{paralelo_emisor}}</div>
             <div>Email: {{emisor.correo}}</div>
             <div>Phone: {{emisor.telefono}}</div>
           </div>
@@ -35,9 +35,9 @@
             <div>
               <strong>{{receptor.nombre}} {{receptor.apellido}}</strong>
             </div>
-            <div>COLEGIO: {{receptor.colegio}}</div>
-            <div>CURSO: {{receptor.id_curso_paralelo}}</div>
-            <div>PARALELO: {{receptor.id_curso_paralelo}}</div>
+            <div>COLEGIO: {{colegio_receptor}}</div>
+            <div>CURSO: {{curso_receptor}}</div>
+            <div>PARALELO: {{paralelo_receptor}}</div>
           </div>
         </div>
 
@@ -66,7 +66,7 @@
 
                 <td class="text-right">{{producto.PRECIO_PRODUCTO}}$</td>
                 <td class="text-right">{{cantidades[i]}}</td>
-                <td class="text-right">XXXX$</td>
+                <td class="text-right">{{producto.PRECIO_PRODUCTO * cantidades[i]}}$</td>
               </tr>
             </tbody>
           </table>
@@ -98,8 +98,8 @@
               data-toggle="buttons"
               style="text-align: center"
             >
-              <label class="btn btn-secondary active">
-                <input type="checkbox" checked autocomplete="off" /> Checked
+              <label (click)="onClickAceptar()" class="btn btn-secondary active">
+                ACEPTAR
               </label>
             </div>
           </div>
