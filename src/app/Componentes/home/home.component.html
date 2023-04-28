@@ -1,66 +1,62 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
 
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <header class="masthead">
-    <div class="container">
-        <div class="masthead-subheading">LA NAVIDAD LLEGO A UNIÓN ESTUDIANTIL</div>
-        <div class="masthead-heading text-uppercase">" PUTOS LOS DE UNIÓN JAJA ATT EMI "</div>
-
+<header class="masthead">
+  <div class="container">
+    <div class="masthead-subheading">LA NAVIDAD LLEGO A UNIÓN ESTUDIANTIL</div>
+    <div class="masthead-heading text-uppercase">
+      "DIVIÉRTETE COMPARTIENDO DULCES ENTRES DISTINTOS COLEGIOS"
     </div>
+  </div>
 </header>
 
-<div class="text-center pb-2" style="padding-top:5% ; background-color:azure;">
-    <p class="section-title px-5">
-      <span class="px-2">INTERCOLEGIAL DE NAVIDAD 2022</span>
-    </p>
-    <h1 class="mb-4">PRODUCTOS DE NAVIDAD</h1>
-  </div>
+<div class="text-center pb-2" style="padding-top: 5%; background-color: azure">
+  <p class="section-title px-5">
+    <span class="px-2">INTERCOLEGIAL DE NAVIDAD 2022</span>
+  </p>
+  <h1 class="mb-4">PRODUCTOS DE NAVIDAD</h1>
+</div>
 
 <section class="py-5">
-    <div class="container px-4 px-lg-5 mt-5">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-
-
-
-            <div *ngFor = "let producto of productos; let i=index" class="col mb-5">
-                <div class="card h-100">
-                    <!-- Product image-->
-                    <img class="card-img-top" [src]="producto.IMG_PRODUCTO" alt="..." />
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">{{producto.NOMBRE_PRODUCTO}}</h5>
-                            <!-- Product reviews-->
-                            <div class="d-flex justify-content-center small text-warning mb-2">
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                            </div>
-                            <!-- Product price-->
-                            ${{producto.PRECIO_PRODUCTO}}
-                        </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" (click)="goToProducto(i)">COMPRAR</a></div>
-                    </div>
-                </div>
+  <div class="container px-4 px-lg-5 mt-5">
+    <div
+      class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
+    >
+      <div *ngFor="let producto of productos; let i = index" class="col mb-5">
+        <div class="card h-100">
+          <!-- Product image-->
+          <img class="card-img-top" [src]="producto.IMG_PRODUCTO" alt="..." />
+          <!-- Product details-->
+          <div class="card-body p-4">
+            <div class="text-center">
+              <!-- Product name-->
+              <h5 class="fw-bolder">{{ producto.NOMBRE_PRODUCTO }}</h5>
+              <!-- Product reviews-->
+              <div
+                class="d-flex justify-content-center small text-warning mb-2"
+              >
+                <div class="bi-star-fill"></div>
+                <div class="bi-star-fill"></div>
+                <div class="bi-star-fill"></div>
+                <div class="bi-star-fill"></div>
+                <div class="bi-star-fill"></div>
+              </div>
+              <!-- Product price-->
+              ${{ producto.PRECIO_PRODUCTO }}
             </div>
-
-
-
+          </div>
+          <!-- Product actions-->
+          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+            <div class="text-center">
+              <a class="btn btn-outline-dark mt-auto" (click)="goToProducto(i)"
+                >COMPRAR</a
+              >
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
 </section>
-
-
-
-
-
-
-
-
