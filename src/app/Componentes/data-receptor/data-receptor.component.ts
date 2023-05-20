@@ -23,6 +23,7 @@ export class DataReceptorComponent implements OnInit {
   @ViewChild("myModalInfo", { static: false }) myModalInfo!: TemplateRef<any>;
   cantidades: any[] = [];
   productos: any[] = []; 
+  total = null;
 
   admin ={
     ID_ADMIN: '',
@@ -72,6 +73,9 @@ export class DataReceptorComponent implements OnInit {
       this.colegios = res as any[];
       console.log(this.colegios);
     });
+    this.productos = JSON.parse(localStorage.getItem('productos')!);
+    this.cantidades = JSON.parse(localStorage.getItem('cantidades')!);
+    this.total = JSON.parse(localStorage.getItem('total')!);
   }
 
   selectColegio(event: any){

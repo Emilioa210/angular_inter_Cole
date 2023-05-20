@@ -15,6 +15,10 @@ export class IngresoDataComponent implements OnInit {
   paralelos: Array<any> = [];
   curso:any = '';
   paralelo:any = '';
+  productos: Array<any> = [];
+  cantidades: Array<any> = [];
+  total = null;
+
   emisor = {
       nombre:'',
       apellido: '',
@@ -36,6 +40,9 @@ export class IngresoDataComponent implements OnInit {
       this.colegios = res as any[];
       console.log(this.colegios);
     });
+    this.productos = JSON.parse(localStorage.getItem('productos')!);
+    this.cantidades = JSON.parse(localStorage.getItem('cantidades')!);
+    this.total = JSON.parse(localStorage.getItem('total')!);
   }
 
   selectColegio(event: any){

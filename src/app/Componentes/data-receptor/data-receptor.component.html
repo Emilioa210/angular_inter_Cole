@@ -182,41 +182,39 @@
             <!-- End .col-lg-9 -->
             <aside class="col-lg-3">
               <div class="summary">
-                <h3 class="summary-title">Your Order</h3>
+                <h3 class="summary-title">Tu orden</h3>
                 <!-- End .summary-title -->
 
                 <table class="table table-summary">
                   <thead>
                     <tr>
-                      <th>Product</th>
+                      <th>Producto</th>
+                      <th>Cantidad</th>
                       <th>Total</th>
                     </tr>
                   </thead>
 
                   <tbody>
-                    <tr>
+                    <tr *ngFor = "let producto of productos; let i=index">
                       <td>
-                        <a href="#">Beige knitted elastic runner shoes</a>
+                        {{producto.NOMBRE_PRODUCTO}}
                       </td>
-                      <td>$84.00</td>
+                      <td>
+                        {{cantidades[i]}}
+                      </td>
+                      <td>${{producto.PRECIO_PRODUCTO * cantidades[i]}}</td>
                     </tr>
 
-                    <tr>
-                      <td><a href="#">Blue utility pinafore denimdress</a></td>
-                      <td>$76,00</td>
-                    </tr>
                     <tr class="summary-subtotal">
                       <td>Subtotal:</td>
-                      <td>$160.00</td>
+                      <td>-</td>
+                      <td>${{total}}</td>
                     </tr>
-                    <!-- End .summary-subtotal -->
-                    <tr>
-                      <td>Shipping:</td>
-                      <td>Free shipping</td>
-                    </tr>
+ 
                     <tr class="summary-total">
-                      <td>Total:</td>
-                      <td>$160.00</td>
+                      <td><b>Total:</b></td>
+                      <td>-</td>
+                      <td><b>${{total}}</b></td>
                     </tr>
                     <!-- End .summary-total -->
                   </tbody>

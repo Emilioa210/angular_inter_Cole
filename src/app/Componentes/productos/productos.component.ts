@@ -39,21 +39,29 @@ export class ProductosComponent implements OnInit {
       this.cantidades.push(this.cantidad);
       localStorage.setItem('productos',JSON.stringify(this.productos))
       localStorage.setItem('cantidades',JSON.stringify(this.cantidades))
-    }else if(JSON.parse(recoveredData!).includes(this.producto)){
-      var posicion = JSON.parse(recoveredData!).indexOf(this.producto);
-      console.log("POSICION PRODUCTO: "+posicion);
-      this.cantidades = JSON.parse(recoveredCantidad!);
-      this.cantidades[posicion] = this.cantidades[posicion]+this.cantidad;
-      localStorage.setItem('cantidades',JSON.stringify(this.cantidades));
     }else{
       this.productos = JSON.parse(recoveredData!);
       this.cantidades = JSON.parse(recoveredCantidad!);
-      this.productos.push(this.producto);
-      this.cantidades.push(this.cantidad);
-      localStorage.setItem('productos',JSON.stringify(this.productos));
-      localStorage.setItem('cantidades',JSON.stringify(this.cantidades));
+      let elemento = this.producto;
+      var i = 0;
+      var repetido = false;
+      this.productos.map((item:any) => {
+        if(item.CODIGO_PRODUCTO == elemento.CODIGO_PRODUCTO){
+          console.log("ELEMENTO REPETIDO: "+item.NOMBRE_PRODUCTO);
+          repetido = true;
+          var suma = this.cantidades[i] + this.cantidad
+          this.cantidades[i] = suma;
+          localStorage.setItem('cantidades',JSON.stringify(this.cantidades));
+        }
+        i++;
+      });
+      if(repetido==false){
+        this.productos.push(this.producto);
+        this.cantidades.push(this.cantidad);
+        localStorage.setItem('productos',JSON.stringify(this.productos));
+        localStorage.setItem('cantidades',JSON.stringify(this.cantidades));
+      }
+      
     }
-    //localStorage.setItem('producto', JSON.stringify(this.producto));
-    //localStorage.setItem('cantidad', this.cantidad.toString());
   }
 }
