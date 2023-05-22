@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import decode from 'jwt-decode';
 import { AdminColegioService } from 'src/app/servicios/admin-colegio.service';
+import { CorreoService } from 'src/app/servicios/correo.service';
+import { EmisorService } from 'src/app/servicios/emisor.service';
 
 @Component({
   selector: 'app-admin-cos-list',
@@ -38,7 +40,9 @@ export class AdminCosListComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private modalService: NgbModal,
-              private adminDB:AdminColegioService) { }
+              private adminDB:AdminColegioService,
+              private correo: CorreoService,
+              private emisorDB:EmisorService) { }
 
   ngOnInit(): void {
     var id = this.route.snapshot.paramMap.get('id');
@@ -102,6 +106,7 @@ export class AdminCosListComponent implements OnInit {
     
           this.pedidoDB.update(codigo, this.pedido).subscribe(r=>{
             console.log(r);
+            this.sendMail(i);
             this.mostrarModalInfo();
           }, err =>{
             console.log(err);
@@ -123,6 +128,28 @@ export class AdminCosListComponent implements OnInit {
     }, error => {
       console.log(error);
     });
+  }
+
+  sendMail(i:number): void{
+    var codigo = this.pedidos[i].codigo_pedido;
+    this.emisorDB.get(this.pedido.CODIGO_EMISOR).subscribe(res=>{
+      var mail = {
+        email: res.CORREO_EMISOR,
+        asunto: 'APROBACIÓN DE PEDIDO #'+codigo,
+        html: `
+          <h1>TU PEDIDO HA SIDO APROBADO</h1>
+        `
+        }
+        console.log(mail);
+        this.correo.sendMessage(mail).subscribe(res =>{
+          console.log(res);
+        },
+        error =>{
+          console.log(error);
+        });
+    });
+    
+  
   }
 
   buscarPedido(){
