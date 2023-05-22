@@ -1,39 +1,51 @@
 <div class="wrapper">
-    <ng-template #myModalInfo let-modal>
+  <ng-template #myModalInfo let-modal>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">INCORRECTO</h5>
+      </div>
+      <div class="modal-body">USUARIO O CLAVE INCORRECTOS</div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="modal.close('ACEPTAR')"
+        >
+          ACEPTAR
+        </button>
+      </div>
+    </div>
+  </ng-template>
 
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">INCORRECTO</h5>
-          </div>
-          <div class="modal-body">
-            USUARIO O CLAVE INCORRECTOS
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" (click)="modal.close('ACEPTAR')">ACEPTAR</button>
-          </div>
-        </div>
-      
-      </ng-template>
-      
-    <div class="logo">
-        <img src="https://intercolegialue.com/wp-content/uploads/2021/09/cropped-Logo-UE-2021-a-color-sin-circulo-103x80.png" alt="">
+  <div class="logo">
+    <img
+      src="https://intercolegialue.com/wp-content/uploads/2021/09/cropped-Logo-UE-2021-a-color-sin-circulo-103x80.png"
+      alt=""
+    />
+  </div>
+  <div class="text-center mt-4 name">UNIÓN ESTUDIANTIL</div>
+  <form class="p-3 mt-3">
+    <div class="form-field d-flex align-items-center">
+      <span class="far fa-user"></span>
+      <input
+        type="text"
+        name="userName"
+        id="userName"
+        placeholder="Username"
+        [(ngModel)]="admin.usuario"
+      />
     </div>
-    <div class="text-center mt-4 name">
-        UNIÓN ESTUDIANTIL
+    <div class="form-field d-flex align-items-center">
+      <span class="fas fa-key"></span>
+      <input
+        type="password"
+        name="password"
+        id="pwd"
+        placeholder="Password"
+        [(ngModel)]="admin.contrasena"
+      />
     </div>
-    <form class="p-3 mt-3">
-        <div class="form-field d-flex align-items-center">
-            <span class="far fa-user"></span>
-            <input type="text" name="userName" id="userName" placeholder="Username" [(ngModel)]="admin.usuario">
-        </div>
-        <div class="form-field d-flex align-items-center">
-            <span class="fas fa-key"></span>
-            <input type="password" name="password" id="pwd" placeholder="Password" [(ngModel)]="admin.contrasena">
-        </div>
-        <button (click)="loginAdmin()" class="btn mt-3">Login</button>
-    </form>
-    <div class="text-center fs-6">
-        <a href="#">Forget password?</a> or <a href="#">Sign up</a>
-    </div>
+    <button (click)="loginAdmin()" class="btn mt-3">Iniciar Sesión</button>
+  </form>
+  <div class="text-center fs-6"></div>
 </div>
-

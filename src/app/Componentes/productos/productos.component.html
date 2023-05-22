@@ -1,116 +1,129 @@
 <main class="mt-5 pt-2">
+  <div class="container dark-grey-text mt-1">
+    <!--Grid row-->
+    <div class="row wow fadeIn">
+      <!--Grid column-->
+      <div class="col-md-6 mb-4">
+        <h4 class="my-4 h4" style="margin-left: 13%">
+          {{ producto.NOMBRE_PRODUCTO }}
+        </h4>
+        <img
+          [src]="producto.IMG_PRODUCTO"
+          class="img-fluid"
+          alt=""
+          width="80%"
+          height="40%"
+          style="border-radius: 10% 10% 10% 10%; margin-left: 13%"
+        />
+      </div>
+      <!--Grid column-->
 
-    <div class="container dark-grey-text mt-1" >
-
-      <!--Grid row-->
-      <div class="row wow fadeIn" >
-        
-        <!--Grid column-->
-        <div class="col-md-6 mb-4" >
-          <h4 class="my-4 h4" style="margin-left: 13% ; ">{{producto.NOMBRE_PRODUCTO}}</h4>
-          <img [src]="producto.IMG_PRODUCTO" class="img-fluid" alt="" width="80%" height="40%" style="border-radius: 10% 10% 10% 10% ; margin-left: 13% ; " >
-
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-md-6 mb-4">
-
-          <!--Content-->
-          <div class="p-4">
-
-            <div class="mb-3">
-              <a href="">
-                <span class="badge purple mr-1">Category 2</span>
-              </a>
-              <a href="">
-                <span class="badge blue mr-1">New</span>
-              </a>
-              <a href="">
-                <span class="badge red mr-1">Bestseller</span>
-              </a>
-            </div>
-
-            <p class="lead">
-              <span class="mr-1">
-                <del>$2</del>
-              </span>
-              <span>${{producto.PRECIO_PRODUCTO}}</span>
-            </p>
-
-            <p class="lead font-weight-bold">Description</p>
-
-            <p>{{producto.DESCRIPCION_PRODUCTO}}</p>
-
-            <form class="d-flex justify-content-left">
-              <!-- Default input -->
-              <input name="prueba"  type="number" value="1" aria-label="Search" class="form-control" style="width: 100px" [(ngModel)]="cantidad"/>
-              <button (click)="saveProducto()" class="btn btn-primary btn-md my-0 p" type="submit" onclick="carrito" routerLink="/carrito" routerLinkActive="router-link-active" >Add to cart
-                <i class="fas fa-shopping-cart ml-1"></i>
-              </button>
-
-            </form>
-
+      <!--Grid column-->
+      <div class="col-md-6 mb-4">
+        <!--Content-->
+        <div class="p-4">
+          <div class="mb-3">
+            <a href="">
+              <span class="badge purple mr-1">Category 2</span>
+            </a>
+            <a href="">
+              <span class="badge blue mr-1">New</span>
+            </a>
+            <a href="">
+              <span class="badge red mr-1">Bestseller</span>
+            </a>
           </div>
-          <!--Content-->
 
+          <p class="lead">
+            <span class="mr-1">
+              <del>$2</del>
+            </span>
+            <span>${{ producto.PRECIO_PRODUCTO }}</span>
+          </p>
+
+          <p class="lead font-weight-bold">Description</p>
+
+          <p>{{ producto.DESCRIPCION_PRODUCTO }}</p>
+
+          <form class="d-flex justify-content-left">
+            <!-- Default input -->
+            <input
+              name="prueba"
+              type="number"
+              value="1"
+              aria-label="Search"
+              class="form-control"
+              style="width: 100px"
+              [(ngModel)]="cantidad"
+            />
+            <button
+              (click)="saveProducto()"
+              class="btn btn-primary btn-md my-0 p"
+              type="submit"
+              onclick="carrito"
+              routerLink="/carrito"
+              routerLinkActive="router-link-active"
+            >
+              Add to cart
+              <i class="fas fa-shopping-cart ml-1"></i>
+            </button>
+          </form>
         </div>
-        <!--Grid column-->
-
+        <!--Content-->
       </div>
-      <!--Grid row-->
-      <hr>
-
-      <!--Grid row-->
-      <div class="row d-flex justify-content-center wow fadeIn">
-
-        <!--Grid column-->
-        <div class="col-md-6 text-center">
-
-          <h4 class="my-4 h4">Additional information</h4>
-
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus suscipit modi sapiente illo soluta odit
-            voluptates,
-            quibusdam officia. Neque quibusdam quas a quis porro? Molestias illo neque eum in laborum.</p>
-
-        </div>
-        <!--Grid column-->
-
-      </div>
-      <!--Grid row-->
-
-      <!--Grid row-->
-      <div class="row wow fadeIn">
-
-        <!--Grid column-->
-        <div class="col-lg-4 col-md-12 mb-4">
-
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/11.jpg" class="img-fluid" alt="">
-
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-lg-4 col-md-6 mb-4">
-
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/12.jpg" class="img-fluid" alt="">
-
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-lg-4 col-md-6 mb-4">
-
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg" class="img-fluid" alt="">
-
-        </div>
-        <!--Grid column-->
-
-      </div>
-      <!--Grid row-->
-
+      <!--Grid column-->
     </div>
-  </main>
-  <!--Main layout-->
+    <!--Grid row-->
+    <hr />
 
+    <!--Grid row-->
+    <div class="row d-flex justify-content-center wow fadeIn">
+      <!--Grid column-->
+      <div class="col-md-6 text-center">
+        <h4 class="my-4 h4">Patrocinadores</h4>
+      </div>
+      <!--Grid column-->
+    </div>
+    <!--Grid row-->
 
+    <!--Grid row-->
+    <div class="row wow fadeIn">
+      <!--Grid column-->
+      <div class="col-lg-4 col-md-12 mb-4">
+        <img
+          src="https://th.bing.com/th?id=OSK.56f1dae604bb3043edd5273c7f585933&w=117&h=82&c=7&o=6&dpr=1.5&pid=SANGAM
+          "
+          class="img-fluid"
+          width="50%"
+          alt=""
+        />
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <img
+          src="https://contenidos.fybeca.com/wp-content/uploads/2022/10/logo-multicines.png"
+          class="img-fluid"
+          width="70%"
+          alt=""
+        />
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <br />
+        <img
+          src="https://www.pizzahut.com.ec/assets/9322c1e0-0a6a-d053-9746-9466a5c465a5_logoMobileHeader.png"
+          class="img-fluid"
+          width="70%"
+          alt=""
+        />
+      </div>
+      <!--Grid column-->
+    </div>
+    <!--Grid row-->
+  </div>
+</main>
+<!--Main layout-->

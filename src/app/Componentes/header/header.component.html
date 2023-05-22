@@ -3,11 +3,11 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container px-4 px-lg-5">
     <img
-      src="https://intercolegialue.com/wp-content/uploads/2021/09/cropped-Logo-UE-2021-a-color-sin-circulo-103x80.png"
-      width="8%"
+      src="https://unionestudiantil.org/wp-content/uploads/2023/05/LOGOTIPO-07-768x990.png"
+      width="5%"
     />
     <a class="navbar-brand" href="#!"
-      ><strong>INTERCOLEGIAL DE DULCES UE</strong></a
+      ><strong>-INTERCOLEGIAL DE DULCES UE-</strong></a
     >
     <button
       class="navbar-toggler"
@@ -24,23 +24,23 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="home"
-            >HOME</a
+            >INICIO</a
           >
         </li>
         <li *ngIf="!verifyAdmin" class="nav-item">
-          <a class="nav-link" routerLink="cos_admin_login">LOGIN </a>
+          <a class="nav-link" routerLink="cos_admin_login">INICIAR SESIÓN</a>
         </li>
 
         <li *ngIf="verifyAdmin" class="nav-item">
-          <a class="nav-link" (click)="goToMenu()">Menú</a>
+          <a class="nav-link" (click)="goToMenu()">MENÚ</a>
         </li>
 
         <li *ngIf="verifyAdmin" class="nav-item">
-          <a class="nav-link" (click)="goToPedidos()">Pedidos</a>
+          <a class="nav-link" (click)="goToPedidos()">PEDIDOS</a>
         </li>
 
         <li *ngIf="verifyAdmin" class="nav-item">
-          <a class="nav-link" (click)="logOut()">LOGOUT</a>
+          <a class="nav-link" (click)="logOut()">CERRAR SESIÓN</a>
         </li>
       </ul>
       <form class="d-flex">

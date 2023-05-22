@@ -195,26 +195,28 @@
                   </thead>
 
                   <tbody>
-                    <tr *ngFor = "let producto of productos; let i=index">
+                    <tr *ngFor="let producto of productos; let i = index">
                       <td>
-                        {{producto.NOMBRE_PRODUCTO}}
+                        {{ producto.NOMBRE_PRODUCTO }}
                       </td>
                       <td>
-                        {{cantidades[i]}}
+                        {{ cantidades[i] }}
                       </td>
-                      <td>${{producto.PRECIO_PRODUCTO * cantidades[i]}}</td>
+                      <td>${{ producto.PRECIO_PRODUCTO * cantidades[i] }}</td>
                     </tr>
 
                     <tr class="summary-subtotal">
                       <td>Subtotal:</td>
                       <td>-</td>
-                      <td>${{total}}</td>
+                      <td>${{ total }}</td>
                     </tr>
- 
+
                     <tr class="summary-total">
                       <td><b>Total:</b></td>
                       <td>-</td>
-                      <td><b>${{total}}</b></td>
+                      <td>
+                        <b>${{ total }}</b>
+                      </td>
                     </tr>
                     <!-- End .summary-total -->
                   </tbody>
@@ -223,9 +225,19 @@
 
                 <div class="accordion-summary" id="accordion-payment">
                   <div class="card">
-                    <div class="card-header" id="heading-1">
+                    <div
+                      class="card-header"
+                      id="heading-1"
+                      style="text-align: center"
+                    >
                       <h2 class="card-title">
-                        <button type="submit">COMPRAR :D</button>
+                        <button
+                          type="submit"
+                          class="btn btn-primary btn-lg"
+                          style="padding-right: 10%; background-color: green"
+                        >
+                          COMPRAR
+                        </button>
                       </h2>
                     </div>
                     <!-- End .card-header -->
@@ -236,7 +248,7 @@
                       data-parent="#accordion-payment"
                     >
                       <div class="card-body">
-                        No olvides de llenar correctamente los datos
+                        <b>No olvides de llenar correctamente los datos</b>
                       </div>
                       <!-- End .card-body -->
                     </div>

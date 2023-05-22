@@ -207,9 +207,9 @@
                   placeholder="Selecciona en tipo"
                 >
                   <option disabled selected>Seleccionar tipo</option>
-                  <option [value]=1 selected>Enviar con el Nombre</option>
-                  <option [value]=2 selected>Enviar con el Apodo</option>
-                  <option [value]=3 selected>Enviar con Anonimamente</option>
+                  <option [value]="1" selected>Enviar con el Nombre</option>
+                  <option [value]="2" selected>Enviar con el Apodo</option>
+                  <option [value]="3" selected>Enviar con Anonimamente</option>
                 </select>
                 <div *ngIf="myForm.controls['tipo'].errors?.['required']">
                   <p style="color: red">Este campo es obligatorio</p>
@@ -251,26 +251,28 @@
                   </thead>
 
                   <tbody>
-                    <tr *ngFor = "let producto of productos; let i=index">
+                    <tr *ngFor="let producto of productos; let i = index">
                       <td>
-                        {{producto.NOMBRE_PRODUCTO}}
+                        {{ producto.NOMBRE_PRODUCTO }}
                       </td>
                       <td>
-                        {{cantidades[i]}}
+                        {{ cantidades[i] }}
                       </td>
-                      <td>${{producto.PRECIO_PRODUCTO * cantidades[i]}}</td>
+                      <td>${{ producto.PRECIO_PRODUCTO * cantidades[i] }}</td>
                     </tr>
-                      
+
                     <tr class="summary-subtotal">
                       <td>Subtotal:</td>
                       <td>-</td>
-                      <td>${{total}}</td>
+                      <td>${{ total }}</td>
                     </tr>
-                
+
                     <tr class="summary-total">
                       <td><b>Total:</b></td>
                       <td>-</td>
-                      <td><b>${{total}}</b></td>
+                      <td>
+                        <b>${{ total }}</b>
+                      </td>
                     </tr>
                     <!-- End .summary-total -->
                   </tbody>
@@ -279,9 +281,19 @@
 
                 <div class="accordion-summary" id="accordion-payment">
                   <div class="card">
-                    <div class="card-header" id="heading-1">
+                    <div
+                      class="card-header"
+                      id="heading-1"
+                      style="text-align: center"
+                    >
                       <h2 class="card-title">
-                        <button type="submit">Siguiente :D</button>
+                        <button
+                          type="submit"
+                          class="btn btn-primary btn-lg"
+                          style="padding-right: 10%"
+                        >
+                          Continuar
+                        </button>
                       </h2>
                     </div>
                     <!-- End .card-header -->
