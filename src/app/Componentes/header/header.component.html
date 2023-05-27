@@ -1,5 +1,87 @@
 <!--Navigation-->
 
+<ng-template #myModalConf let-modal>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Éxito</h5>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+        (click)="modal.close('Cerrado desde la ventana')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+      <form>
+            <label>Contraseña Antigua</label>
+            <input
+              type="password"
+              class="form-control"
+              required
+              [(ngModel)]="contrasena_antigua"
+              name="nombre"
+            />
+            <label>Contraseña Nueva</label>
+            <input
+              type="password"
+              class="form-control"
+              required
+              [(ngModel)]="contrasena_nueva"
+              name="nombre"
+            />
+            <label>Confrimación de Contraseña</label>
+            <input
+              type="password"
+              class="form-control"
+              required
+              [(ngModel)]="confirma_contrasena"
+              name="nombre"
+            />
+      </form>
+      
+    <div class="modal-body">¿Seguro quieres cambiar la contraseña?</div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        data-dismiss="modal"
+        (click)="modal.close('No')"
+      >
+        CANCELAR
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="modal.close('Si')"
+      >
+        ACEPTAR
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #myModalInfo let-modal>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">CONTRASEÑA CAMBIADA</h5>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+        (click)="modal.close('cerrar')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      LA CONTRASEÑA SE HA CAMBIADO CORRECTAMENTE
+    </div>
+  </div>
+</ng-template>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container px-4 px-lg-5">
     <img
@@ -38,10 +120,14 @@
         <li *ngIf="verifyAdmin" class="nav-item">
           <a class="nav-link" (click)="goToPedidos()">PEDIDOS</a>
         </li>
-
+        <li *ngIf="verifyAdmin" class="nav-item">
+          <a class="nav-link" (click)=" mostrarModalConf()">CAMBIAR CONTRASEÑA</a>
+        </li>
         <li *ngIf="verifyAdmin" class="nav-item">
           <a class="nav-link" (click)="logOut()">CERRAR SESIÓN</a>
         </li>
+
+        
       </ul>
       <form class="d-flex">
         <button class="btn btn-outline-dark" type="submit" routerLink="carrito">

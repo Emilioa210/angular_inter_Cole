@@ -11,6 +11,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductoCantidadService } from 'src/app/servicios/producto-cantidad.service';
 import { PedidoProductoService } from 'src/app/servicios/pedido-producto.service';
 import { CorreoService } from 'src/app/servicios/correo.service';
+import { CursoService } from 'src/app/servicios/curso.service';
+import { ParaleloService } from 'src/app/servicios/paralelo.service';
 
 
 @Component({
@@ -25,6 +27,13 @@ export class DataReceptorComponent implements OnInit {
   cantidades: any[] = [];
   productos: any[] = []; 
   total = null;
+
+  colegioEmisor = '';
+  colegioReceptor = '';
+  cursoEmisor = '';
+  cursoReceptor = '';
+  paraleloEmisor = '';
+  paraleloReceptor = '';
 
   admin ={
     ID_ADMIN: '',
@@ -68,7 +77,9 @@ export class DataReceptorComponent implements OnInit {
     private modalService: NgbModal,
     private productoCant:ProductoCantidadService,
     private pedidoProducto:PedidoProductoService,
-    private correo: CorreoService) { }
+    private correo: CorreoService,
+    private cursoDB:CursoService,
+    private paraleloDB:ParaleloService) { }
 
   ngOnInit(): void {
     this.colegioDB.getAll().subscribe(res=>{
@@ -253,10 +264,13 @@ export class DataReceptorComponent implements OnInit {
             
           });
           this.mostrarModalInfo();
-          this.sendMail();
+          
         }, 3000);
         
-
+        setTimeout(()=>{  
+          this.sendMail();
+        },4000);
+  
          
       }
     }, error => {
@@ -265,131 +279,175 @@ export class DataReceptorComponent implements OnInit {
   }
 
   mostrarModalInfo(){
+    
     this.modalService.open(this.myModalInfo).result.then( r => {
       if(r=='cerrar'){
         this.router.navigate(['comprobante']);
+ 
       }else{
         this.router.navigate(['comprobante']);
+  
       }
     });
   }
 
-  sendMail(): void{
-    var CODIGO_PEDIDO = JSON.parse(localStorage.getItem('id_pedido')!);
-    var mail = {
-    email: this.dataEmisor.correo,
-    asunto: 'COMPROBANTE DE PEDIDO #'+CODIGO_PEDIDO,
-    html: `
-    <div class="main">
-    <div class="container mt-3">
-      <div class="card animate__animated animate__fadeIn">
-        <div class="card-header">
-          <p><strong>FECHA:</strong> ${this.fecha}</p>
-  
-          <div style="padding-right: 70%">
-            <span class="float-right"
-              ><strong>Estado:</strong> Pendiente por pagar a tu Consejo
-              Estudiantil</span
-            >
-          </div>
-          <div style="padding-right: 70%">
-            <span class="float-right"
-              ><strong>NÚMERO DE ORDEN: </strong> ${JSON.parse(localStorage.getItem('id_pedido')!)}</span
-            >
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="row mb-4">
-            <div class="col-6 col-md-6">
-              <h6 class="mb-2">DE</h6>
-              <div>
-                <strong>${this.dataEmisor.nombre} ${this.dataEmisor.apellido}</strong>
-              </div>
-              <div>COLEGIO: ${this.dataEmisor.colegio}</div>
-              <div>CURSO: ${this.dataEmisor.id_curso_paralelo}</div>
-              <div>PARALELO: ${this.dataEmisor.id_curso_paralelo}</div>
-              <div>Email: ${this.dataEmisor.correo}</div>
-              <div>Phone: ${this.dataEmisor.telefono}</div>
-            </div>
-  
-            <div class="col-6 col-md-6">
-              <h6 class="mb-2">PARA:</h6>
-              <div>
-                <strong>${this.receptor.nombre} ${this.receptor.apellido}</strong>
-              </div>
-              <div>COLEGIO: ${this.receptor.colegio}</div>
-              <div>CURSO: ${this.receptor.id_curso_paralelo}</div>
-              <div>PARALELO: ${this.receptor.id_curso_paralelo}</div>
-            </div>
-          </div>
-  
-          <div class="table-responsive-sm">
-            <table class="table table-sm table-striped">
-              <thead>
-                <tr>
-                  <th scope="col" width="2%" class="center">#</th>
-                  <th scope="col" width="20%">Producto/Servicio</th>
-                  <th scope="col" class="d-none d-sm-table-cell" width="50%">
-                    Descripción
-                  </th>
-  
-                  <th scope="col" width="10%" class="text-right">P. Unidad</th>
-                  <th scope="col" width="8%" class="text-right">Num.</th>
-                  <th scope="col" width="10%" class="text-right">Total</th>
-                </tr>
-              </thead>
-              <tbody *ngFor = "let producto of productos; let i=index">
-                <tr>
-                  <td class="text-left">{{i+1}}</td>
-                  <td class="item_name">{{producto.NOMBRE_PRODUCTO}}</td>
-                  <td class="item_desc d-none d-sm-table-cell">
-                    {{producto.DESCRIPCION_PRODUCTO}}
-                  </td>
-  
-                  <td class="text-right">{{producto.PRECIO_PRODUCTO}}$</td>
-                  <td class="text-right">{{cantidades[i]}}</td>
-                  <td class="text-right">{{producto.PRECIO_PRODUCTO * cantidades[i]}}$</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="row">
-            <div class="col-lg-4 col-sm-5"></div>
-  
-            <div class="col-lg-4 col-sm-5 ml-auto">
-              <table class="table table-sm table-clear">
-                <tbody>
-                  <tr>
-                    <td class="left">
-                      <strong>Subtotal</strong>
-                    </td>
-                    <td class="text-right bg-light">{{total}}$</td>
-                  </tr>
-                  <tr>
-                    <td class="left">
-                      <strong>Total</strong>
-                    </td>
-                    <td class="text-right bg-light">
-                      <strong>{{total}}$</strong>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-    `
-    }
-    console.log(mail);
-    this.correo.sendMessage(mail).subscribe(res =>{
-      console.log(res);
-    },
-    error =>{
-      console.log(error);
+  private generateTableRows(): string {
+    let rows = '';
+    this.productos.forEach((producto, index) => {
+      rows += `
+      <tr>
+      <td class="text-left">${index + 1}</td>
+      <td class="item_name">${producto.NOMBRE_PRODUCTO}</td>
+      <td class="item_desc d-none d-sm-table-cell">
+        ${producto.DESCRIPCION_PRODUCTO}
+      </td>
+      <td class="text-right">${producto.PRECIO_PRODUCTO}$</td>
+      <td class="text-right">${this.cantidades[index]}</td>
+      <td class="text-right">${producto.PRECIO_PRODUCTO * this.cantidades[index]}$</td>
+      </tr>
+      `;
     });
+    return rows;
+  }
+
+  sendMail(): void{
+    
+    
+    this.colegioDB.get(this.dataEmisor.colegio).subscribe(r=>{
+      this.colegioEmisor=r.NOMBRE_COLEGIO;
+    });
+    this.colegioDB.get(this.receptor.colegio).subscribe(r=>{
+      this.colegioReceptor=r.NOMBRE_COLEGIO;
+    });
+    this.cursoParaleloDB.get(this.dataEmisor.id_curso_paralelo).subscribe(r=>{
+        this.cursoDB.get(r.CODIGO_CURSO).subscribe(res=>{
+          this.cursoEmisor = res.NOMBRE_CURSO;
+        });
+        this.paraleloDB.get(r.CODIGO_PARALELO).subscribe(resp=>{
+          this.paraleloEmisor = resp.NOMBRE_PARALELO;
+        });
+    });
+    this.cursoParaleloDB.get(this.receptor.id_curso_paralelo).subscribe(r=>{
+      this.cursoDB.get(r.CODIGO_CURSO).subscribe(res=>{
+        this.cursoReceptor = res.NOMBRE_CURSO;
+      });
+      this.paraleloDB.get(r.CODIGO_PARALELO).subscribe(resp=>{
+        this.paraleloReceptor = resp.NOMBRE_PARALELO;
+      });
+    });
+    setTimeout(()=>{  
+      console.log("COLEGIO EMISOR: "+this.colegioEmisor);
+      console.log("COLEGIO RECEPTOR: "+this.colegioReceptor);
+  
+      var CODIGO_PEDIDO = JSON.parse(localStorage.getItem('id_pedido')!);
+            var mail = {
+            email: this.dataEmisor.correo,
+            asunto: 'COMPROBANTE DE PEDIDO #'+CODIGO_PEDIDO,
+            html: `
+            <div class="main">
+            <div class="container mt-3">
+              <div class="card animate__animated animate__fadeIn">
+                <div class="card-header">
+                  <p><strong>FECHA:</strong> ${this.fecha}</p>
+          
+                  <div style="padding-right: 70%">
+                    <span class="float-right"
+                      ><strong>Estado:</strong> Pendiente por pagar a tu Consejo
+                      Estudiantil</span
+                    >
+                  </div>
+                  <div style="padding-right: 70%">
+                    <span class="float-right"
+                      ><strong>NÚMERO DE ORDEN: </strong> ${CODIGO_PEDIDO}</span
+                    >
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="row mb-4">
+                    <div class="col-6 col-md-6">
+                      <h6 class="mb-2">DE</h6>
+                      <div>
+                        <strong>${this.dataEmisor.nombre} ${this.dataEmisor.apellido}</strong>
+                      </div>
+                      <div>COLEGIO: ${this.colegioEmisor}</div>
+                      <div>CURSO: ${this.cursoEmisor}</div>
+                      <div>PARALELO: ${this.paraleloEmisor}</div>
+                      <div>Email: ${this.dataEmisor.correo}</div>
+                      <div>Phone: ${this.dataEmisor.telefono}</div>
+                    </div>
+          
+                    <div class="col-6 col-md-6">
+                      <h6 class="mb-2">PARA:</h6>
+                      <div>
+                        <strong>${this.receptor.nombre} ${this.receptor.apellido}</strong>
+                      </div>
+                      <div>COLEGIO: ${this.colegioReceptor}</div>
+                      <div>CURSO: ${this.cursoReceptor}</div>
+                      <div>PARALELO: ${this.paraleloReceptor}</div>
+                    </div>
+                  </div>
+          
+                  <div class="table-responsive-sm">
+                    <table class="table table-sm table-striped">
+                      <thead>
+                        <tr>
+                          <th scope="col" width="2%" class="center">#</th>
+                          <th scope="col" width="20%">Producto/Servicio</th>
+                          <th scope="col" class="d-none d-sm-table-cell" width="50%">
+                            Descripción
+                          </th>
+          
+                          <th scope="col" width="10%" class="text-right">P. Unidad</th>
+                          <th scope="col" width="8%" class="text-right">Num.</th>
+                          <th scope="col" width="10%" class="text-right">Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          ${this.generateTableRows()}
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-4 col-sm-5"></div>
+          
+                    <div class="col-lg-4 col-sm-5 ml-auto">
+                      <table class="table table-sm table-clear">
+                        <tbody>
+                          <tr>
+                            <td class="left">
+                              <strong>Subtotal</strong>
+                            </td>
+                            <td class="text-right bg-light">$${this.total}</td>
+                          </tr>
+                          <tr>
+                            <td class="left">
+                              <strong>Total</strong>
+                            </td>
+                            <td class="text-right bg-light">
+                              <strong>$${this.total}</strong>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            `
+            }
+            console.log(mail);
+            this.correo.sendMessage(mail).subscribe(res =>{
+              console.log(res);
+            },
+            error =>{
+              console.log(error);
+            });
+    },5000);
+    
+    
+    
   
 }
 
