@@ -35,11 +35,21 @@
         required
         [(ngModel)]="contrasena_nueva"
         name="Nueva"
+        #nuevaInput="ngModel"
+        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}"
       />
       <div
         *ngIf="myForm.controls['Nueva'].invalid && myForm.controls['Nueva'].errors?.['required']"
       >
         <p style="color: red">Este campo es obligatorio.</p>
+      </div>
+      <div
+        *ngIf="nuevaInput.invalid && (nuevaInput.dirty || nuevaInput.touched)"
+      >
+        <p style="color: red">
+          La contraseña debe tener al menos 8 caracteres, una letra mayúscula,
+          un número y un carácter especial.
+        </p>
       </div>
       <label>Confirmación de Contraseña</label>
       <input
