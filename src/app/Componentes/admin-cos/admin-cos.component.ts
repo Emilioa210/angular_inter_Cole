@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminColegioService } from 'src/app/servicios/admin-colegio.service';
 import { ColegioService } from 'src/app/servicios/colegio.service';
 import decode from 'jwt-decode';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-admin-cos',
@@ -10,6 +11,7 @@ import decode from 'jwt-decode';
   styleUrls: ['./admin-cos.component.css']
 })
 export class AdminCosComponent implements OnInit {
+  @ViewChild("myModalInfo", { static: false }) myModalInfo!: TemplateRef<any>;
 
   colegio= {
     CODIGO_COLEGIO: '',
@@ -22,7 +24,8 @@ export class AdminCosComponent implements OnInit {
   constructor(private router: Router,
               private route: ActivatedRoute,
               private adminDB:AdminColegioService,
-              private colegioDB:ColegioService) { }
+              private colegioDB:ColegioService,
+              private modalService: NgbModal) { }
 
   ngOnInit(): void {
     var id = this.route.snapshot.paramMap.get('id');
@@ -56,6 +59,11 @@ export class AdminCosComponent implements OnInit {
     this.router.navigate([]).then(_result => {
       window.location.replace(`admin-cos-list/`+id);
     });
+  }
+
+  mostrarModalInfo(){
+    
+    this.modalService.open(this.myModalInfo);
   }
   
 
