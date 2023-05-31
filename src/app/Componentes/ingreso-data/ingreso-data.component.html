@@ -89,7 +89,7 @@
                 </div>
               </div>
 
-              <label>Colegio</label>
+              <label>Colegio *</label>
               <select
                 [(ngModel)]="emisor.colegio"
                 (change)="selectColegio($event)"
@@ -160,7 +160,7 @@
 
               <div class="row">
                 <div class="col-sm-6">
-                  <label>Apodo (opcional)*</label>
+                  <label>Apodo (opcional)</label>
                   <input
                     [(ngModel)]="emisor.apodo"
                     type="text"
@@ -198,7 +198,7 @@
               </div>
                  -->
               <div class="col-sm-6">
-                <label>Tipo de Envió</label>
+                <label>Tipo de Envío</label>
                 <select
                   class="form-control"
                   name="tipo"
@@ -218,7 +218,7 @@
 
               <!-- End .custom-checkbox -->
 
-              <label>Mensaje</label>
+              <label>Mensaje (opcional)</label>
               <textarea
                 [(ngModel)]="emisor.mensaje"
                 class="form-control"
@@ -228,9 +228,7 @@
                 name="mensaje"
                 maxlength="30"
               ></textarea>
-              <p style="color: blue">
-                Solamente 30 caracteres es opcional el envió de mensaje
-              </p>
+              <p style="color: blue">Solamente 30 caracteres</p>
               <br />
               <br />
               <br />
