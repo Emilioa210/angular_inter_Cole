@@ -158,9 +158,7 @@ export class AdminCosListComponent implements OnInit {
         window.location.reload();
     }else{
 
-      var id = this.route.snapshot.paramMap.get('id');
-      this.pedidoDB.findByAdmin(id).subscribe(res=>{
-        this.pedidos = res as any [];
+        
         this.pedidos = this.pedidos.filter(function(pedido) {
             var nombre_completo = pedido.nombre_emisor.toUpperCase() + ' '+ pedido.apellido_emisor.toUpperCase();
             if (pedido.codigo_pedido == busqueda || pedido.correo_emisor == busqueda || nombre_completo.includes(busqueda.toUpperCase())){
@@ -171,15 +169,16 @@ export class AdminCosListComponent implements OnInit {
         });
           
           
-          
+        this.totales=[];
+
         this.pedidos.map(pedido=>{
-            var total = 0;
+          var total = 0;
             pedido.productos.map((producto: any) =>{
               total += producto.total;
             });
             this.totales.push(total);
         });
-      });
+
     }
   }
 

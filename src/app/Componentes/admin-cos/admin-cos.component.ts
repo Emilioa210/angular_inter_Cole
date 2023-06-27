@@ -4,6 +4,7 @@ import { AdminColegioService } from 'src/app/servicios/admin-colegio.service';
 import { ColegioService } from 'src/app/servicios/colegio.service';
 import decode from 'jwt-decode';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PedidoService } from 'src/app/servicios/pedido.service';
 
 @Component({
   selector: 'app-admin-cos',
@@ -17,6 +18,8 @@ export class AdminCosComponent implements OnInit {
     CODIGO_COLEGIO: '',
     NOMBRE_COLEGIO: ''
   }
+  pedidos: Array<any> = [];
+  totales=0;
 
   role: any =null;
   admin = '';
@@ -25,7 +28,8 @@ export class AdminCosComponent implements OnInit {
               private route: ActivatedRoute,
               private adminDB:AdminColegioService,
               private colegioDB:ColegioService,
-              private modalService: NgbModal) { }
+              private modalService: NgbModal,
+              private pedidoDB: PedidoService) { }
 
   ngOnInit(): void {
     var id = this.route.snapshot.paramMap.get('id');
@@ -44,6 +48,24 @@ export class AdminCosComponent implements OnInit {
               console.log("COLEGIO: "+r.NOMBRE_COLEGIO);
                 this.colegio = r;
             });
+          });
+
+          this.pedidoDB.findByAdmin(id).subscribe(res=>{
+            this.pedidos = res as any [];
+            
+            this.pedidos.map(pedido=>{
+                var total = 0;
+                if(pedido.estado==1){
+                  pedido.productos.map((producto: any) =>{
+                  
+                    total += producto.total;
+                  });
+                  this.totales+=total;
+                }
+                
+                
+            });
+            
           });
     }else{
          console.log("Sesión no iniciada");
